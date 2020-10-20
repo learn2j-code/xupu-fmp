@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlm.fmp.mapper.HmInAuditionMapper">
+  <resultMap id="BaseResultMap" type="com.dlm.fmp.pojo.HmInAudition">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="family_id" jdbcType="INTEGER" property="familyId" />
+    <result column="household_id" jdbcType="INTEGER" property="householdId" />
+    <result column="household_member_id" jdbcType="INTEGER" property="householdMemberId" />
+    <result column="identity_no" jdbcType="VARCHAR" property="identityNo" />
+    <result column="household_in_flag" jdbcType="INTEGER" property="householdInFlag" />
+    <result column="main_flag" jdbcType="INTEGER" property="mainFlag" />
+    <result column="pay_flag" jdbcType="INTEGER" property="payFlag" />
+    <result column="in_money" jdbcType="VARCHAR" property="inMoney" />
+    <result column="discounts" jdbcType="VARCHAR" property="discounts" />
+    <result column="story_money" jdbcType="VARCHAR" property="storyMoney" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, family_id, household_id, household_member_id, identity_no, household_in_flag, 
+    main_flag, pay_flag, in_money, discounts, story_money, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.dlm.fmp.pojo.HmInAuditionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from hm_in_audition
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hm_in_audition
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hm_in_audition
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dlm.fmp.pojo.HmInAuditionExample">
+    delete from hm_in_audition
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dlm.fmp.pojo.HmInAudition">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into hm_in_audition (family_id, household_id, household_member_id, 
+      identity_no, household_in_flag, main_flag, 
+      pay_flag, in_money, discounts, 
+      story_money, create_time, update_time
+      )
+    values (#{familyId,jdbcType=INTEGER}, #{householdId,jdbcType=INTEGER}, #{householdMemberId,jdbcType=INTEGER}, 
+      #{identityNo,jdbcType=VARCHAR}, #{householdInFlag,jdbcType=INTEGER}, #{mainFlag,jdbcType=INTEGER}, 
+      #{payFlag,jdbcType=INTEGER}, #{inMoney,jdbcType=VARCHAR}, #{discounts,jdbcType=VARCHAR}, 
+      #{storyMoney,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlm.fmp.pojo.HmInAudition">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into hm_in_audition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="familyId != null">
+        family_id,
+      </if>
+      <if test="householdId != null">
+        household_id,
+      </if>
+      <if test="householdMemberId != null">
+        household_member_id,
+      </if>
+      <if test="identityNo != null">
+        identity_no,
+      </if>
+      <if test="householdInFlag != null">
+        household_in_flag,
+      </if>
+      <if test="mainFlag != null">
+        main_flag,
+      </if>
+      <if test="payFlag != null">
+        pay_flag,
+      </if>
+      <if test="inMoney != null">
+        in_money,
+      </if>
+      <if test="discounts != null">
+        discounts,
+      </if>
+      <if test="storyMoney != null">
+        story_money,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="familyId != null">
+        #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="householdId != null">
+        #{householdId,jdbcType=INTEGER},
+      </if>
+      <if test="householdMemberId != null">
+        #{householdMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="identityNo != null">
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="householdInFlag != null">
+        #{householdInFlag,jdbcType=INTEGER},
+      </if>
+      <if test="mainFlag != null">
+        #{mainFlag,jdbcType=INTEGER},
+      </if>
+      <if test="payFlag != null">
+        #{payFlag,jdbcType=INTEGER},
+      </if>
+      <if test="inMoney != null">
+        #{inMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="discounts != null">
+        #{discounts,jdbcType=VARCHAR},
+      </if>
+      <if test="storyMoney != null">
+        #{storyMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dlm.fmp.pojo.HmInAuditionExample" resultType="java.lang.Long">
+    select count(*) from hm_in_audition
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update hm_in_audition
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyId != null">
+        family_id = #{record.familyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.householdId != null">
+        household_id = #{record.householdId,jdbcType=INTEGER},
+      </if>
+      <if test="record.householdMemberId != null">
+        household_member_id = #{record.householdMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.identityNo != null">
+        identity_no = #{record.identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdInFlag != null">
+        household_in_flag = #{record.householdInFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.mainFlag != null">
+        main_flag = #{record.mainFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.payFlag != null">
+        pay_flag = #{record.payFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.inMoney != null">
+        in_money = #{record.inMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discounts != null">
+        discounts = #{record.discounts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storyMoney != null">
+        story_money = #{record.storyMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update hm_in_audition
+    set id = #{record.id,jdbcType=INTEGER},
+      family_id = #{record.familyId,jdbcType=INTEGER},
+      household_id = #{record.householdId,jdbcType=INTEGER},
+      household_member_id = #{record.householdMemberId,jdbcType=INTEGER},
+      identity_no = #{record.identityNo,jdbcType=VARCHAR},
+      household_in_flag = #{record.householdInFlag,jdbcType=INTEGER},
+      main_flag = #{record.mainFlag,jdbcType=INTEGER},
+      pay_flag = #{record.payFlag,jdbcType=INTEGER},
+      in_money = #{record.inMoney,jdbcType=VARCHAR},
+      discounts = #{record.discounts,jdbcType=VARCHAR},
+      story_money = #{record.storyMoney,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlm.fmp.pojo.HmInAudition">
+    update hm_in_audition
+    <set>
+      <if test="familyId != null">
+        family_id = #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="householdId != null">
+        household_id = #{householdId,jdbcType=INTEGER},
+      </if>
+      <if test="householdMemberId != null">
+        household_member_id = #{householdMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="identityNo != null">
+        identity_no = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="householdInFlag != null">
+        household_in_flag = #{householdInFlag,jdbcType=INTEGER},
+      </if>
+      <if test="mainFlag != null">
+        main_flag = #{mainFlag,jdbcType=INTEGER},
+      </if>
+      <if test="payFlag != null">
+        pay_flag = #{payFlag,jdbcType=INTEGER},
+      </if>
+      <if test="inMoney != null">
+        in_money = #{inMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="discounts != null">
+        discounts = #{discounts,jdbcType=VARCHAR},
+      </if>
+      <if test="storyMoney != null">
+        story_money = #{storyMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlm.fmp.pojo.HmInAudition">
+    update hm_in_audition
+    set family_id = #{familyId,jdbcType=INTEGER},
+      household_id = #{householdId,jdbcType=INTEGER},
+      household_member_id = #{householdMemberId,jdbcType=INTEGER},
+      identity_no = #{identityNo,jdbcType=VARCHAR},
+      household_in_flag = #{householdInFlag,jdbcType=INTEGER},
+      main_flag = #{mainFlag,jdbcType=INTEGER},
+      pay_flag = #{payFlag,jdbcType=INTEGER},
+      in_money = #{inMoney,jdbcType=VARCHAR},
+      discounts = #{discounts,jdbcType=VARCHAR},
+      story_money = #{storyMoney,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,1400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlm.fmp.mapper.HouseholdMemberMapper">
+  <resultMap id="BaseResultMap" type="com.dlm.fmp.pojo.HouseholdMember">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="household_member_code" jdbcType="VARCHAR" property="householdMemberCode" />
+    <result column="household_id" jdbcType="INTEGER" property="householdId" />
+    <result column="household_code" jdbcType="VARCHAR" property="householdCode" />
+    <result column="father_name" jdbcType="VARCHAR" property="fatherName" />
+    <result column="mother_name" jdbcType="VARCHAR" property="motherName" />
+    <result column="spouse_name" jdbcType="VARCHAR" property="spouseName" />
+    <result column="spouse_father_name" jdbcType="VARCHAR" property="spouseFatherName" />
+    <result column="relation_name" jdbcType="VARCHAR" property="relationName" />
+    <result column="relation_code" jdbcType="VARCHAR" property="relationCode" />
+    <result column="relation_del" jdbcType="VARCHAR" property="relationDel" />
+    <result column="member_surname" jdbcType="VARCHAR" property="memberSurname" />
+    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
+    <result column="sec_personal_name" jdbcType="VARCHAR" property="secPersonalName" />
+    <result column="mark" jdbcType="VARCHAR" property="mark" />
+    <result column="other_name" jdbcType="VARCHAR" property="otherName" />
+    <result column="other_mark" jdbcType="VARCHAR" property="otherMark" />
+    <result column="marriage" jdbcType="VARCHAR" property="marriage" />
+    <result column="marry_time" jdbcType="VARCHAR" property="marryTime" />
+    <result column="marry_flag" jdbcType="INTEGER" property="marryFlag" />
+    <result column="pregnent_flag" jdbcType="INTEGER" property="pregnentFlag" />
+    <result column="moveout_flag" jdbcType="INTEGER" property="moveoutFlag" />
+    <result column="moveout_place" jdbcType="VARCHAR" property="moveoutPlace" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="other_comment" jdbcType="VARCHAR" property="otherComment" />
+    <result column="sec_marry_flag" jdbcType="INTEGER" property="secMarryFlag" />
+    <result column="divorce_flag" jdbcType="INTEGER" property="divorceFlag" />
+    <result column="relative_flag" jdbcType="INTEGER" property="relativeFlag" />
+    <result column="educate_experience" jdbcType="VARCHAR" property="educateExperience" />
+    <result column="career" jdbcType="VARCHAR" property="career" />
+    <result column="native_place" jdbcType="VARCHAR" property="nativePlace" />
+    <result column="member_detail" jdbcType="VARCHAR" property="memberDetail" />
+    <result column="member_story" jdbcType="VARCHAR" property="memberStory" />
+    <result column="member_story_level" jdbcType="INTEGER" property="memberStoryLevel" />
+    <result column="member_gender" jdbcType="INTEGER" property="memberGender" />
+    <result column="head_image" jdbcType="VARCHAR" property="headImage" />
+    <result column="generation_num" jdbcType="INTEGER" property="generationNum" />
+    <result column="generation_level" jdbcType="VARCHAR" property="generationLevel" />
+    <result column="generation_level_code" jdbcType="INTEGER" property="generationLevelCode" />
+    <result column="generation_word" jdbcType="VARCHAR" property="generationWord" />
+    <result column="identity_no" jdbcType="VARCHAR" property="identityNo" />
+    <result column="birthday_time" jdbcType="VARCHAR" property="birthdayTime" />
+    <result column="lunar_birthday_time" jdbcType="VARCHAR" property="lunarBirthdayTime" />
+    <result column="birthday_time_tra" jdbcType="VARCHAR" property="birthdayTimeTra" />
+    <result column="birthday_year" jdbcType="VARCHAR" property="birthdayYear" />
+    <result column="birthday_year_tra" jdbcType="VARCHAR" property="birthdayYearTra" />
+    <result column="deathday_time" jdbcType="VARCHAR" property="deathdayTime" />
+    <result column="lunar_deathday_time" jdbcType="VARCHAR" property="lunarDeathdayTime" />
+    <result column="deathday_time_tra" jdbcType="VARCHAR" property="deathdayTimeTra" />
+    <result column="deathday_year" jdbcType="VARCHAR" property="deathdayYear" />
+    <result column="deathday_year_tra" jdbcType="VARCHAR" property="deathdayYearTra" />
+    <result column="buried_location" jdbcType="VARCHAR" property="buriedLocation" />
+    <result column="pre_relation_list" jdbcType="VARCHAR" property="preRelationList" />
+    <result column="post_relation_list" jdbcType="VARCHAR" property="postRelationList" />
+    <result column="birthdate_type" jdbcType="INTEGER" property="birthdateType" />
+    <result column="birthdate_monthtype" jdbcType="INTEGER" property="birthdateMonthtype" />
+    <result column="deathdate_monthtype" jdbcType="INTEGER" property="deathdateMonthtype" />
+    <result column="address_detail" jdbcType="VARCHAR" property="addressDetail" />
+    <result column="adoptout" jdbcType="INTEGER" property="adoptout" />
+    <result column="adoptout_detail" jdbcType="VARCHAR" property="adoptoutDetail" />
+    <result column="uxorilocal" jdbcType="INTEGER" property="uxorilocal" />
+    <result column="uxorilocal_detail" jdbcType="VARCHAR" property="uxorilocalDetail" />
+    <result column="soninlaw" jdbcType="INTEGER" property="soninlaw" />
+    <result column="soninlaw_detail" jdbcType="VARCHAR" property="soninlawDetail" />
+    <result column="ranking" jdbcType="INTEGER" property="ranking" />
+    <result column="rel_flag" jdbcType="INTEGER" property="relFlag" />
+    <result column="alive_status" jdbcType="INTEGER" property="aliveStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="household_membercol" jdbcType="VARCHAR" property="householdMembercol" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="other_personal_name" jdbcType="VARCHAR" property="otherPersonalName" />
+    <result column="nick_personal_name" jdbcType="VARCHAR" property="nickPersonalName" />
+    <result column="nick_mark" jdbcType="VARCHAR" property="nickMark" />
+    <result column="live_place" jdbcType="VARCHAR" property="livePlace" />
+    <result column="spouse_detail" jdbcType="VARCHAR" property="spouseDetail" />
+    <result column="center_member_id" jdbcType="INTEGER" property="centerMemberId" />
+    <result column="center_relation_code" jdbcType="VARCHAR" property="centerRelationCode" />
+    <result column="woman_sec_marry_flag" jdbcType="INTEGER" property="womanSecMarryFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, household_member_code, household_id, household_code, father_name, mother_name, 
+    spouse_name, spouse_father_name, relation_name, relation_code, relation_del, member_surname, 
+    member_name, sec_personal_name, mark, other_name, other_mark, marriage, marry_time, 
+    marry_flag, pregnent_flag, moveout_flag, moveout_place, comment, other_comment, sec_marry_flag, 
+    divorce_flag, relative_flag, educate_experience, career, native_place, member_detail, 
+    member_story, member_story_level, member_gender, head_image, generation_num, generation_level, 
+    generation_level_code, generation_word, identity_no, birthday_time, lunar_birthday_time, 
+    birthday_time_tra, birthday_year, birthday_year_tra, deathday_time, lunar_deathday_time, 
+    deathday_time_tra, deathday_year, deathday_year_tra, buried_location, pre_relation_list, 
+    post_relation_list, birthdate_type, birthdate_monthtype, deathdate_monthtype, address_detail, 
+    adoptout, adoptout_detail, uxorilocal, uxorilocal_detail, soninlaw, soninlaw_detail, 
+    ranking, rel_flag, alive_status, create_time, update_time, household_membercol, phone, 
+    nick_name, other_personal_name, nick_personal_name, nick_mark, live_place, spouse_detail, 
+    center_member_id, center_relation_code, woman_sec_marry_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.dlm.fmp.pojo.HouseholdMemberExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from household_member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from household_member
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from household_member
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dlm.fmp.pojo.HouseholdMemberExample">
+    delete from household_member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dlm.fmp.pojo.HouseholdMember">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into household_member (household_member_code, household_id, 
+      household_code, father_name, mother_name, 
+      spouse_name, spouse_father_name, relation_name, 
+      relation_code, relation_del, member_surname, 
+      member_name, sec_personal_name, mark, 
+      other_name, other_mark, marriage, 
+      marry_time, marry_flag, pregnent_flag, 
+      moveout_flag, moveout_place, comment, 
+      other_comment, sec_marry_flag, divorce_flag, 
+      relative_flag, educate_experience, career, 
+      native_place, member_detail, member_story, 
+      member_story_level, member_gender, head_image, 
+      generation_num, generation_level, generation_level_code, 
+      generation_word, identity_no, birthday_time, 
+      lunar_birthday_time, birthday_time_tra, birthday_year, 
+      birthday_year_tra, deathday_time, lunar_deathday_time, 
+      deathday_time_tra, deathday_year, deathday_year_tra, 
+      buried_location, pre_relation_list, post_relation_list, 
+      birthdate_type, birthdate_monthtype, deathdate_monthtype, 
+      address_detail, adoptout, adoptout_detail, 
+      uxorilocal, uxorilocal_detail, soninlaw, 
+      soninlaw_detail, ranking, rel_flag, 
+      alive_status, create_time, update_time, 
+      household_membercol, phone, nick_name, 
+      other_personal_name, nick_personal_name, nick_mark, 
+      live_place, spouse_detail, center_member_id, 
+      center_relation_code, woman_sec_marry_flag)
+    values (#{householdMemberCode,jdbcType=VARCHAR}, #{householdId,jdbcType=INTEGER}, 
+      #{householdCode,jdbcType=VARCHAR}, #{fatherName,jdbcType=VARCHAR}, #{motherName,jdbcType=VARCHAR}, 
+      #{spouseName,jdbcType=VARCHAR}, #{spouseFatherName,jdbcType=VARCHAR}, #{relationName,jdbcType=VARCHAR}, 
+      #{relationCode,jdbcType=VARCHAR}, #{relationDel,jdbcType=VARCHAR}, #{memberSurname,jdbcType=VARCHAR}, 
+      #{memberName,jdbcType=VARCHAR}, #{secPersonalName,jdbcType=VARCHAR}, #{mark,jdbcType=VARCHAR}, 
+      #{otherName,jdbcType=VARCHAR}, #{otherMark,jdbcType=VARCHAR}, #{marriage,jdbcType=VARCHAR}, 
+      #{marryTime,jdbcType=VARCHAR}, #{marryFlag,jdbcType=INTEGER}, #{pregnentFlag,jdbcType=INTEGER}, 
+      #{moveoutFlag,jdbcType=INTEGER}, #{moveoutPlace,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
+      #{otherComment,jdbcType=VARCHAR}, #{secMarryFlag,jdbcType=INTEGER}, #{divorceFlag,jdbcType=INTEGER}, 
+      #{relativeFlag,jdbcType=INTEGER}, #{educateExperience,jdbcType=VARCHAR}, #{career,jdbcType=VARCHAR}, 
+      #{nativePlace,jdbcType=VARCHAR}, #{memberDetail,jdbcType=VARCHAR}, #{memberStory,jdbcType=VARCHAR}, 
+      #{memberStoryLevel,jdbcType=INTEGER}, #{memberGender,jdbcType=INTEGER}, #{headImage,jdbcType=VARCHAR}, 
+      #{generationNum,jdbcType=INTEGER}, #{generationLevel,jdbcType=VARCHAR}, #{generationLevelCode,jdbcType=INTEGER}, 
+      #{generationWord,jdbcType=VARCHAR}, #{identityNo,jdbcType=VARCHAR}, #{birthdayTime,jdbcType=VARCHAR}, 
+      #{lunarBirthdayTime,jdbcType=VARCHAR}, #{birthdayTimeTra,jdbcType=VARCHAR}, #{birthdayYear,jdbcType=VARCHAR}, 
+      #{birthdayYearTra,jdbcType=VARCHAR}, #{deathdayTime,jdbcType=VARCHAR}, #{lunarDeathdayTime,jdbcType=VARCHAR}, 
+      #{deathdayTimeTra,jdbcType=VARCHAR}, #{deathdayYear,jdbcType=VARCHAR}, #{deathdayYearTra,jdbcType=VARCHAR}, 
+      #{buriedLocation,jdbcType=VARCHAR}, #{preRelationList,jdbcType=VARCHAR}, #{postRelationList,jdbcType=VARCHAR}, 
+      #{birthdateType,jdbcType=INTEGER}, #{birthdateMonthtype,jdbcType=INTEGER}, #{deathdateMonthtype,jdbcType=INTEGER}, 
+      #{addressDetail,jdbcType=VARCHAR}, #{adoptout,jdbcType=INTEGER}, #{adoptoutDetail,jdbcType=VARCHAR}, 
+      #{uxorilocal,jdbcType=INTEGER}, #{uxorilocalDetail,jdbcType=VARCHAR}, #{soninlaw,jdbcType=INTEGER}, 
+      #{soninlawDetail,jdbcType=VARCHAR}, #{ranking,jdbcType=INTEGER}, #{relFlag,jdbcType=INTEGER}, 
+      #{aliveStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{householdMembercol,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{otherPersonalName,jdbcType=VARCHAR}, #{nickPersonalName,jdbcType=VARCHAR}, #{nickMark,jdbcType=VARCHAR}, 
+      #{livePlace,jdbcType=VARCHAR}, #{spouseDetail,jdbcType=VARCHAR}, #{centerMemberId,jdbcType=INTEGER}, 
+      #{centerRelationCode,jdbcType=VARCHAR}, #{womanSecMarryFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlm.fmp.pojo.HouseholdMember">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into household_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="householdMemberCode != null">
+        household_member_code,
+      </if>
+      <if test="householdId != null">
+        household_id,
+      </if>
+      <if test="householdCode != null">
+        household_code,
+      </if>
+      <if test="fatherName != null">
+        father_name,
+      </if>
+      <if test="motherName != null">
+        mother_name,
+      </if>
+      <if test="spouseName != null">
+        spouse_name,
+      </if>
+      <if test="spouseFatherName != null">
+        spouse_father_name,
+      </if>
+      <if test="relationName != null">
+        relation_name,
+      </if>
+      <if test="relationCode != null">
+        relation_code,
+      </if>
+      <if test="relationDel != null">
+        relation_del,
+      </if>
+      <if test="memberSurname != null">
+        member_surname,
+      </if>
+      <if test="memberName != null">
+        member_name,
+      </if>
+      <if test="secPersonalName != null">
+        sec_personal_name,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+      <if test="otherName != null">
+        other_name,
+      </if>
+      <if test="otherMark != null">
+        other_mark,
+      </if>
+      <if test="marriage != null">
+        marriage,
+      </if>
+      <if test="marryTime != null">
+        marry_time,
+      </if>
+      <if test="marryFlag != null">
+        marry_flag,
+      </if>
+      <if test="pregnentFlag != null">
+        pregnent_flag,
+      </if>
+      <if test="moveoutFlag != null">
+        moveout_flag,
+      </if>
+      <if test="moveoutPlace != null">
+        moveout_place,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="otherComment != null">
+        other_comment,
+      </if>
+      <if test="secMarryFlag != null">
+        sec_marry_flag,
+      </if>
+      <if test="divorceFlag != null">
+        divorce_flag,
+      </if>
+      <if test="relativeFlag != null">
+        relative_flag,
+      </if>
+      <if test="educateExperience != null">
+        educate_experience,
+      </if>
+      <if test="career != null">
+        career,
+      </if>
+      <if test="nativePlace != null">
+        native_place,
+      </if>
+      <if test="memberDetail != null">
+        member_detail,
+      </if>
+      <if test="memberStory != null">
+        member_story,
+      </if>
+      <if test="memberStoryLevel != null">
+        member_story_level,
+      </if>
+      <if test="memberGender != null">
+        member_gender,
+      </if>
+      <if test="headImage != null">
+        head_image,
+      </if>
+      <if test="generationNum != null">
+        generation_num,
+      </if>
+      <if test="generationLevel != null">
+        generation_level,
+      </if>
+      <if test="generationLevelCode != null">
+        generation_level_code,
+      </if>
+      <if test="generationWord != null">
+        generation_word,
+      </if>
+      <if test="identityNo != null">
+        identity_no,
+      </if>
+      <if test="birthdayTime != null">
+        birthday_time,
+      </if>
+      <if test="lunarBirthdayTime != null">
+        lunar_birthday_time,
+      </if>
+      <if test="birthdayTimeTra != null">
+        birthday_time_tra,
+      </if>
+      <if test="birthdayYear != null">
+        birthday_year,
+      </if>
+      <if test="birthdayYearTra != null">
+        birthday_year_tra,
+      </if>
+      <if test="deathdayTime != null">
+        deathday_time,
+      </if>
+      <if test="lunarDeathdayTime != null">
+        lunar_deathday_time,
+      </if>
+      <if test="deathdayTimeTra != null">
+        deathday_time_tra,
+      </if>
+      <if test="deathdayYear != null">
+        deathday_year,
+      </if>
+      <if test="deathdayYearTra != null">
+        deathday_year_tra,
+      </if>
+      <if test="buriedLocation != null">
+        buried_location,
+      </if>
+      <if test="preRelationList != null">
+        pre_relation_list,
+      </if>
+      <if test="postRelationList != null">
+        post_relation_list,
+      </if>
+      <if test="birthdateType != null">
+        birthdate_type,
+      </if>
+      <if test="birthdateMonthtype != null">
+        birthdate_monthtype,
+      </if>
+      <if test="deathdateMonthtype != null">
+        deathdate_monthtype,
+      </if>
+      <if test="addressDetail != null">
+        address_detail,
+      </if>
+      <if test="adoptout != null">
+        adoptout,
+      </if>
+      <if test="adoptoutDetail != null">
+        adoptout_detail,
+      </if>
+      <if test="uxorilocal != null">
+        uxorilocal,
+      </if>
+      <if test="uxorilocalDetail != null">
+        uxorilocal_detail,
+      </if>
+      <if test="soninlaw != null">
+        soninlaw,
+      </if>
+      <if test="soninlawDetail != null">
+        soninlaw_detail,
+      </if>
+      <if test="ranking != null">
+        ranking,
+      </if>
+      <if test="relFlag != null">
+        rel_flag,
+      </if>
+      <if test="aliveStatus != null">
+        alive_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="householdMembercol != null">
+        household_membercol,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="otherPersonalName != null">
+        other_personal_name,
+      </if>
+      <if test="nickPersonalName != null">
+        nick_personal_name,
+      </if>
+      <if test="nickMark != null">
+        nick_mark,
+      </if>
+      <if test="livePlace != null">
+        live_place,
+      </if>
+      <if test="spouseDetail != null">
+        spouse_detail,
+      </if>
+      <if test="centerMemberId != null">
+        center_member_id,
+      </if>
+      <if test="centerRelationCode != null">
+        center_relation_code,
+      </if>
+      <if test="womanSecMarryFlag != null">
+        woman_sec_marry_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="householdMemberCode != null">
+        #{householdMemberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="householdId != null">
+        #{householdId,jdbcType=INTEGER},
+      </if>
+      <if test="householdCode != null">
+        #{householdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherName != null">
+        #{fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="motherName != null">
+        #{motherName,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseName != null">
+        #{spouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseFatherName != null">
+        #{spouseFatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationName != null">
+        #{relationName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationCode != null">
+        #{relationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="relationDel != null">
+        #{relationDel,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSurname != null">
+        #{memberSurname,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null">
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="secPersonalName != null">
+        #{secPersonalName,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="otherName != null">
+        #{otherName,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMark != null">
+        #{otherMark,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="marryTime != null">
+        #{marryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="marryFlag != null">
+        #{marryFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pregnentFlag != null">
+        #{pregnentFlag,jdbcType=INTEGER},
+      </if>
+      <if test="moveoutFlag != null">
+        #{moveoutFlag,jdbcType=INTEGER},
+      </if>
+      <if test="moveoutPlace != null">
+        #{moveoutPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="otherComment != null">
+        #{otherComment,jdbcType=VARCHAR},
+      </if>
+      <if test="secMarryFlag != null">
+        #{secMarryFlag,jdbcType=INTEGER},
+      </if>
+      <if test="divorceFlag != null">
+        #{divorceFlag,jdbcType=INTEGER},
+      </if>
+      <if test="relativeFlag != null">
+        #{relativeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="educateExperience != null">
+        #{educateExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="career != null">
+        #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null">
+        #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="memberDetail != null">
+        #{memberDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="memberStory != null">
+        #{memberStory,jdbcType=VARCHAR},
+      </if>
+      <if test="memberStoryLevel != null">
+        #{memberStoryLevel,jdbcType=INTEGER},
+      </if>
+      <if test="memberGender != null">
+        #{memberGender,jdbcType=INTEGER},
+      </if>
+      <if test="headImage != null">
+        #{headImage,jdbcType=VARCHAR},
+      </if>
+      <if test="generationNum != null">
+        #{generationNum,jdbcType=INTEGER},
+      </if>
+      <if test="generationLevel != null">
+        #{generationLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="generationLevelCode != null">
+        #{generationLevelCode,jdbcType=INTEGER},
+      </if>
+      <if test="generationWord != null">
+        #{generationWord,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null">
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdayTime != null">
+        #{birthdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lunarBirthdayTime != null">
+        #{lunarBirthdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdayTimeTra != null">
+        #{birthdayTimeTra,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdayYear != null">
+        #{birthdayYear,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdayYearTra != null">
+        #{birthdayYearTra,jdbcType=VARCHAR},
+      </if>
+      <if test="deathdayTime != null">
+        #{deathdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lunarDeathdayTime != null">
+        #{lunarDeathdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deathdayTimeTra != null">
+        #{deathdayTimeTra,jdbcType=VARCHAR},
+      </if>
+      <if test="deathdayYear != null">
+        #{deathdayYear,jdbcType=VARCHAR},
+      </if>
+      <if test="deathdayYearTra != null">
+        #{deathdayYearTra,jdbcType=VARCHAR},
+      </if>
+      <if test="buriedLocation != null">
+        #{buriedLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="preRelationList != null">
+        #{preRelationList,jdbcType=VARCHAR},
+      </if>
+      <if test="postRelationList != null">
+        #{postRelationList,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdateType != null">
+        #{birthdateType,jdbcType=INTEGER},
+      </if>
+      <if test="birthdateMonthtype != null">
+        #{birthdateMonthtype,jdbcType=INTEGER},
+      </if>
+      <if test="deathdateMonthtype != null">
+        #{deathdateMonthtype,jdbcType=INTEGER},
+      </if>
+      <if test="addressDetail != null">
+        #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="adoptout != null">
+        #{adoptout,jdbcType=INTEGER},
+      </if>
+      <if test="adoptoutDetail != null">
+        #{adoptoutDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="uxorilocal != null">
+        #{uxorilocal,jdbcType=INTEGER},
+      </if>
+      <if test="uxorilocalDetail != null">
+        #{uxorilocalDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="soninlaw != null">
+        #{soninlaw,jdbcType=INTEGER},
+      </if>
+      <if test="soninlawDetail != null">
+        #{soninlawDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="ranking != null">
+        #{ranking,jdbcType=INTEGER},
+      </if>
+      <if test="relFlag != null">
+        #{relFlag,jdbcType=INTEGER},
+      </if>
+      <if test="aliveStatus != null">
+        #{aliveStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="householdMembercol != null">
+        #{householdMembercol,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="otherPersonalName != null">
+        #{otherPersonalName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickPersonalName != null">
+        #{nickPersonalName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickMark != null">
+        #{nickMark,jdbcType=VARCHAR},
+      </if>
+      <if test="livePlace != null">
+        #{livePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseDetail != null">
+        #{spouseDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="centerMemberId != null">
+        #{centerMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="centerRelationCode != null">
+        #{centerRelationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="womanSecMarryFlag != null">
+        #{womanSecMarryFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dlm.fmp.pojo.HouseholdMemberExample" resultType="java.lang.Long">
+    select count(*) from household_member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update household_member
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.householdMemberCode != null">
+        household_member_code = #{record.householdMemberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdId != null">
+        household_id = #{record.householdId,jdbcType=INTEGER},
+      </if>
+      <if test="record.householdCode != null">
+        household_code = #{record.householdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatherName != null">
+        father_name = #{record.fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.motherName != null">
+        mother_name = #{record.motherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spouseName != null">
+        spouse_name = #{record.spouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spouseFatherName != null">
+        spouse_father_name = #{record.spouseFatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationName != null">
+        relation_name = #{record.relationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationCode != null">
+        relation_code = #{record.relationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationDel != null">
+        relation_del = #{record.relationDel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberSurname != null">
+        member_surname = #{record.memberSurname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberName != null">
+        member_name = #{record.memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secPersonalName != null">
+        sec_personal_name = #{record.secPersonalName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mark != null">
+        mark = #{record.mark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherName != null">
+        other_name = #{record.otherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherMark != null">
+        other_mark = #{record.otherMark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marriage != null">
+        marriage = #{record.marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marryTime != null">
+        marry_time = #{record.marryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marryFlag != null">
+        marry_flag = #{record.marryFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.pregnentFlag != null">
+        pregnent_flag = #{record.pregnentFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.moveoutFlag != null">
+        moveout_flag = #{record.moveoutFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.moveoutPlace != null">
+        moveout_place = #{record.moveoutPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comment != null">
+        comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherComment != null">
+        other_comment = #{record.otherComment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secMarryFlag != null">
+        sec_marry_flag = #{record.secMarryFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.divorceFlag != null">
+        divorce_flag = #{record.divorceFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.relativeFlag != null">
+        relative_flag = #{record.relativeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.educateExperience != null">
+        educate_experience = #{record.educateExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.career != null">
+        career = #{record.career,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nativePlace != null">
+        native_place = #{record.nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberDetail != null">
+        member_detail = #{record.memberDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberStory != null">
+        member_story = #{record.memberStory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberStoryLevel != null">
+        member_story_level = #{record.memberStoryLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberGender != null">
+        member_gender = #{record.memberGender,jdbcType=INTEGER},
+      </if>
+      <if test="record.headImage != null">
+        head_image = #{record.headImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.generationNum != null">
+        generation_num = #{record.generationNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.generationLevel != null">
+        generation_level = #{record.generationLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.generationLevelCode != null">
+        generation_level_code = #{record.generationLevelCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.generationWord != null">
+        generation_word = #{record.generationWord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identityNo != null">
+        identity_no = #{record.identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthdayTime != null">
+        birthday_time = #{record.birthdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lunarBirthdayTime != null">
+        lunar_birthday_time = #{record.lunarBirthdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthdayTimeTra != null">
+        birthday_time_tra = #{record.birthdayTimeTra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthdayYear != null">
+        birthday_year = #{record.birthdayYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthdayYearTra != null">
+        birthday_year_tra = #{record.birthdayYearTra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deathdayTime != null">
+        deathday_time = #{record.deathdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lunarDeathdayTime != null">
+        lunar_deathday_time = #{record.lunarDeathdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deathdayTimeTra != null">
+        deathday_time_tra = #{record.deathdayTimeTra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deathdayYear != null">
+        deathday_year = #{record.deathdayYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deathdayYearTra != null">
+        deathday_year_tra = #{record.deathdayYearTra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buriedLocation != null">
+        buried_location = #{record.buriedLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preRelationList != null">
+        pre_relation_list = #{record.preRelationList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postRelationList != null">
+        post_relation_list = #{record.postRelationList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthdateType != null">
+        birthdate_type = #{record.birthdateType,jdbcType=INTEGER},
+      </if>
+      <if test="record.birthdateMonthtype != null">
+        birthdate_monthtype = #{record.birthdateMonthtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.deathdateMonthtype != null">
+        deathdate_monthtype = #{record.deathdateMonthtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressDetail != null">
+        address_detail = #{record.addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adoptout != null">
+        adoptout = #{record.adoptout,jdbcType=INTEGER},
+      </if>
+      <if test="record.adoptoutDetail != null">
+        adoptout_detail = #{record.adoptoutDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uxorilocal != null">
+        uxorilocal = #{record.uxorilocal,jdbcType=INTEGER},
+      </if>
+      <if test="record.uxorilocalDetail != null">
+        uxorilocal_detail = #{record.uxorilocalDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.soninlaw != null">
+        soninlaw = #{record.soninlaw,jdbcType=INTEGER},
+      </if>
+      <if test="record.soninlawDetail != null">
+        soninlaw_detail = #{record.soninlawDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ranking != null">
+        ranking = #{record.ranking,jdbcType=INTEGER},
+      </if>
+      <if test="record.relFlag != null">
+        rel_flag = #{record.relFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.aliveStatus != null">
+        alive_status = #{record.aliveStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.householdMembercol != null">
+        household_membercol = #{record.householdMembercol,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickName != null">
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherPersonalName != null">
+        other_personal_name = #{record.otherPersonalName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickPersonalName != null">
+        nick_personal_name = #{record.nickPersonalName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickMark != null">
+        nick_mark = #{record.nickMark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.livePlace != null">
+        live_place = #{record.livePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spouseDetail != null">
+        spouse_detail = #{record.spouseDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.centerMemberId != null">
+        center_member_id = #{record.centerMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.centerRelationCode != null">
+        center_relation_code = #{record.centerRelationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.womanSecMarryFlag != null">
+        woman_sec_marry_flag = #{record.womanSecMarryFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update household_member
+    set id = #{record.id,jdbcType=INTEGER},
+      household_member_code = #{record.householdMemberCode,jdbcType=VARCHAR},
+      household_id = #{record.householdId,jdbcType=INTEGER},
+      household_code = #{record.householdCode,jdbcType=VARCHAR},
+      father_name = #{record.fatherName,jdbcType=VARCHAR},
+      mother_name = #{record.motherName,jdbcType=VARCHAR},
+      spouse_name = #{record.spouseName,jdbcType=VARCHAR},
+      spouse_father_name = #{record.spouseFatherName,jdbcType=VARCHAR},
+      relation_name = #{record.relationName,jdbcType=VARCHAR},
+      relation_code = #{record.relationCode,jdbcType=VARCHAR},
+      relation_del = #{record.relationDel,jdbcType=VARCHAR},
+      member_surname = #{record.memberSurname,jdbcType=VARCHAR},
+      member_name = #{record.memberName,jdbcType=VARCHAR},
+      sec_personal_name = #{record.secPersonalName,jdbcType=VARCHAR},
+      mark = #{record.mark,jdbcType=VARCHAR},
+      other_name = #{record.otherName,jdbcType=VARCHAR},
+      other_mark = #{record.otherMark,jdbcType=VARCHAR},
+      marriage = #{record.marriage,jdbcType=VARCHAR},
+      marry_time = #{record.marryTime,jdbcType=VARCHAR},
+      marry_flag = #{record.marryFlag,jdbcType=INTEGER},
+      pregnent_flag = #{record.pregnentFlag,jdbcType=INTEGER},
+      moveout_flag = #{record.moveoutFlag,jdbcType=INTEGER},
+      moveout_place = #{record.moveoutPlace,jdbcType=VARCHAR},
+      comment = #{record.comment,jdbcType=VARCHAR},
+      other_comment = #{record.otherComment,jdbcType=VARCHAR},
+      sec_marry_flag = #{record.secMarryFlag,jdbcType=INTEGER},
+      divorce_flag = #{record.divorceFlag,jdbcType=INTEGER},
+      relative_flag = #{record.relativeFlag,jdbcType=INTEGER},
+      educate_experience = #{record.educateExperience,jdbcType=VARCHAR},
+      career = #{record.career,jdbcType=VARCHAR},
+      native_place = #{record.nativePlace,jdbcType=VARCHAR},
+      member_detail = #{record.memberDetail,jdbcType=VARCHAR},
+      member_story = #{record.memberStory,jdbcType=VARCHAR},
+      member_story_level = #{record.memberStoryLevel,jdbcType=INTEGER},
+      member_gender = #{record.memberGender,jdbcType=INTEGER},
+      head_image = #{record.headImage,jdbcType=VARCHAR},
+      generation_num = #{record.generationNum,jdbcType=INTEGER},
+      generation_level = #{record.generationLevel,jdbcType=VARCHAR},
+      generation_level_code = #{record.generationLevelCode,jdbcType=INTEGER},
+      generation_word = #{record.generationWord,jdbcType=VARCHAR},
+      identity_no = #{record.identityNo,jdbcType=VARCHAR},
+      birthday_time = #{record.birthdayTime,jdbcType=VARCHAR},
+      lunar_birthday_time = #{record.lunarBirthdayTime,jdbcType=VARCHAR},
+      birthday_time_tra = #{record.birthdayTimeTra,jdbcType=VARCHAR},
+      birthday_year = #{record.birthdayYear,jdbcType=VARCHAR},
+      birthday_year_tra = #{record.birthdayYearTra,jdbcType=VARCHAR},
+      deathday_time = #{record.deathdayTime,jdbcType=VARCHAR},
+      lunar_deathday_time = #{record.lunarDeathdayTime,jdbcType=VARCHAR},
+      deathday_time_tra = #{record.deathdayTimeTra,jdbcType=VARCHAR},
+      deathday_year = #{record.deathdayYear,jdbcType=VARCHAR},
+      deathday_year_tra = #{record.deathdayYearTra,jdbcType=VARCHAR},
+      buried_location = #{record.buriedLocation,jdbcType=VARCHAR},
+      pre_relation_list = #{record.preRelationList,jdbcType=VARCHAR},
+      post_relation_list = #{record.postRelationList,jdbcType=VARCHAR},
+      birthdate_type = #{record.birthdateType,jdbcType=INTEGER},
+      birthdate_monthtype = #{record.birthdateMonthtype,jdbcType=INTEGER},
+      deathdate_monthtype = #{record.deathdateMonthtype,jdbcType=INTEGER},
+      address_detail = #{record.addressDetail,jdbcType=VARCHAR},
+      adoptout = #{record.adoptout,jdbcType=INTEGER},
+      adoptout_detail = #{record.adoptoutDetail,jdbcType=VARCHAR},
+      uxorilocal = #{record.uxorilocal,jdbcType=INTEGER},
+      uxorilocal_detail = #{record.uxorilocalDetail,jdbcType=VARCHAR},
+      soninlaw = #{record.soninlaw,jdbcType=INTEGER},
+      soninlaw_detail = #{record.soninlawDetail,jdbcType=VARCHAR},
+      ranking = #{record.ranking,jdbcType=INTEGER},
+      rel_flag = #{record.relFlag,jdbcType=INTEGER},
+      alive_status = #{record.aliveStatus,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      household_membercol = #{record.householdMembercol,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      other_personal_name = #{record.otherPersonalName,jdbcType=VARCHAR},
+      nick_personal_name = #{record.nickPersonalName,jdbcType=VARCHAR},
+      nick_mark = #{record.nickMark,jdbcType=VARCHAR},
+      live_place = #{record.livePlace,jdbcType=VARCHAR},
+      spouse_detail = #{record.spouseDetail,jdbcType=VARCHAR},
+      center_member_id = #{record.centerMemberId,jdbcType=INTEGER},
+      center_relation_code = #{record.centerRelationCode,jdbcType=VARCHAR},
+      woman_sec_marry_flag = #{record.womanSecMarryFlag,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlm.fmp.pojo.HouseholdMember">
+    update household_member
+    <set>
+      <if test="householdMemberCode != null">
+        household_member_code = #{householdMemberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="householdId != null">
+        household_id = #{householdId,jdbcType=INTEGER},
+      </if>
+      <if test="householdCode != null">
+        household_code = #{householdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherName != null">
+        father_name = #{fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="motherName != null">
+        mother_name = #{motherName,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseName != null">
+        spouse_name = #{spouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseFatherName != null">
+        spouse_father_name = #{spouseFatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationName != null">
+        relation_name = #{relationName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationCode != null">
+        relation_code = #{relationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="relationDel != null">
+        relation_del = #{relationDel,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSurname != null">
+        member_surname = #{memberSurname,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null">
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="secPersonalName != null">
+        sec_personal_name = #{secPersonalName,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="otherName != null">
+        other_name = #{otherName,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMark != null">
+        other_mark = #{otherMark,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        marriage = #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="marryTime != null">
+        marry_time = #{marryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="marryFlag != null">
+        marry_flag = #{marryFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pregnentFlag != null">
+        pregnent_flag = #{pregnentFlag,jdbcType=INTEGER},
+      </if>
+      <if test="moveoutFlag != null">
+        moveout_flag = #{moveoutFlag,jdbcType=INTEGER},
+      </if>
+      <if test="moveoutPlace != null">
+        moveout_place = #{moveoutPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="otherComment != null">
+        other_comment = #{otherComment,jdbcType=VARCHAR},
+      </if>
+      <if test="secMarryFlag != null">
+        sec_marry_flag = #{secMarryFlag,jdbcType=INTEGER},
+      </if>
+      <if test="divorceFlag != null">
+        divorce_flag = #{divorceFlag,jdbcType=INTEGER},
+      </if>
+      <if test="relativeFlag != null">
+        relative_flag = #{relativeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="educateExperience != null">
+        educate_experience = #{educateExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="career != null">
+        career = #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null">
+        native_place = #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="memberDetail != null">
+        member_detail = #{memberDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="memberStory != null">
+        member_story = #{memberStory,jdbcType=VARCHAR},
+      </if>
+      <if test="memberStoryLevel != null">
+        member_story_level = #{memberStoryLevel,jdbcType=INTEGER},
+      </if>
+      <if test="memberGender != null">
+        member_gender = #{memberGender,jdbcType=INTEGER},
+      </if>
+      <if test="headImage != null">
+        head_image = #{headImage,jdbcType=VARCHAR},
+      </if>
+      <if test="generationNum != null">
+        generation_num = #{generationNum,jdbcType=INTEGER},
+      </if>
+      <if test="generationLevel != null">
+        generation_level = #{generationLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="generationLevelCode != null">
+        generation_level_code = #{generationLevelCode,jdbcType=INTEGER},
+      </if>
+      <if test="generationWord != null">
+        generation_word = #{generationWord,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null">
+        identity_no = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdayTime != null">
+        birthday_time = #{birthdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lunarBirthdayTime != null">
+        lunar_birthday_time = #{lunarBirthdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdayTimeTra != null">
+        birthday_time_tra = #{birthdayTimeTra,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdayYear != null">
+        birthday_year = #{birthdayYear,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdayYearTra != null">
+        birthday_year_tra = #{birthdayYearTra,jdbcType=VARCHAR},
+      </if>
+      <if test="deathdayTime != null">
+        deathday_time = #{deathdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lunarDeathdayTime != null">
+        lunar_deathday_time = #{lunarDeathdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deathdayTimeTra != null">
+        deathday_time_tra = #{deathdayTimeTra,jdbcType=VARCHAR},
+      </if>
+      <if test="deathdayYear != null">
+        deathday_year = #{deathdayYear,jdbcType=VARCHAR},
+      </if>
+      <if test="deathdayYearTra != null">
+        deathday_year_tra = #{deathdayYearTra,jdbcType=VARCHAR},
+      </if>
+      <if test="buriedLocation != null">
+        buried_location = #{buriedLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="preRelationList != null">
+        pre_relation_list = #{preRelationList,jdbcType=VARCHAR},
+      </if>
+      <if test="postRelationList != null">
+        post_relation_list = #{postRelationList,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdateType != null">
+        birthdate_type = #{birthdateType,jdbcType=INTEGER},
+      </if>
+      <if test="birthdateMonthtype != null">
+        birthdate_monthtype = #{birthdateMonthtype,jdbcType=INTEGER},
+      </if>
+      <if test="deathdateMonthtype != null">
+        deathdate_monthtype = #{deathdateMonthtype,jdbcType=INTEGER},
+      </if>
+      <if test="addressDetail != null">
+        address_detail = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="adoptout != null">
+        adoptout = #{adoptout,jdbcType=INTEGER},
+      </if>
+      <if test="adoptoutDetail != null">
+        adoptout_detail = #{adoptoutDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="uxorilocal != null">
+        uxorilocal = #{uxorilocal,jdbcType=INTEGER},
+      </if>
+      <if test="uxorilocalDetail != null">
+        uxorilocal_detail = #{uxorilocalDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="soninlaw != null">
+        soninlaw = #{soninlaw,jdbcType=INTEGER},
+      </if>
+      <if test="soninlawDetail != null">
+        soninlaw_detail = #{soninlawDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="ranking != null">
+        ranking = #{ranking,jdbcType=INTEGER},
+      </if>
+      <if test="relFlag != null">
+        rel_flag = #{relFlag,jdbcType=INTEGER},
+      </if>
+      <if test="aliveStatus != null">
+        alive_status = #{aliveStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="householdMembercol != null">
+        household_membercol = #{householdMembercol,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="otherPersonalName != null">
+        other_personal_name = #{otherPersonalName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickPersonalName != null">
+        nick_personal_name = #{nickPersonalName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickMark != null">
+        nick_mark = #{nickMark,jdbcType=VARCHAR},
+      </if>
+      <if test="livePlace != null">
+        live_place = #{livePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseDetail != null">
+        spouse_detail = #{spouseDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="centerMemberId != null">
+        center_member_id = #{centerMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="centerRelationCode != null">
+        center_relation_code = #{centerRelationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="womanSecMarryFlag != null">
+        woman_sec_marry_flag = #{womanSecMarryFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlm.fmp.pojo.HouseholdMember">
+    update household_member
+    set household_member_code = #{householdMemberCode,jdbcType=VARCHAR},
+      household_id = #{householdId,jdbcType=INTEGER},
+      household_code = #{householdCode,jdbcType=VARCHAR},
+      father_name = #{fatherName,jdbcType=VARCHAR},
+      mother_name = #{motherName,jdbcType=VARCHAR},
+      spouse_name = #{spouseName,jdbcType=VARCHAR},
+      spouse_father_name = #{spouseFatherName,jdbcType=VARCHAR},
+      relation_name = #{relationName,jdbcType=VARCHAR},
+      relation_code = #{relationCode,jdbcType=VARCHAR},
+      relation_del = #{relationDel,jdbcType=VARCHAR},
+      member_surname = #{memberSurname,jdbcType=VARCHAR},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      sec_personal_name = #{secPersonalName,jdbcType=VARCHAR},
+      mark = #{mark,jdbcType=VARCHAR},
+      other_name = #{otherName,jdbcType=VARCHAR},
+      other_mark = #{otherMark,jdbcType=VARCHAR},
+      marriage = #{marriage,jdbcType=VARCHAR},
+      marry_time = #{marryTime,jdbcType=VARCHAR},
+      marry_flag = #{marryFlag,jdbcType=INTEGER},
+      pregnent_flag = #{pregnentFlag,jdbcType=INTEGER},
+      moveout_flag = #{moveoutFlag,jdbcType=INTEGER},
+      moveout_place = #{moveoutPlace,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
+      other_comment = #{otherComment,jdbcType=VARCHAR},
+      sec_marry_flag = #{secMarryFlag,jdbcType=INTEGER},
+      divorce_flag = #{divorceFlag,jdbcType=INTEGER},
+      relative_flag = #{relativeFlag,jdbcType=INTEGER},
+      educate_experience = #{educateExperience,jdbcType=VARCHAR},
+      career = #{career,jdbcType=VARCHAR},
+      native_place = #{nativePlace,jdbcType=VARCHAR},
+      member_detail = #{memberDetail,jdbcType=VARCHAR},
+      member_story = #{memberStory,jdbcType=VARCHAR},
+      member_story_level = #{memberStoryLevel,jdbcType=INTEGER},
+      member_gender = #{memberGender,jdbcType=INTEGER},
+      head_image = #{headImage,jdbcType=VARCHAR},
+      generation_num = #{generationNum,jdbcType=INTEGER},
+      generation_level = #{generationLevel,jdbcType=VARCHAR},
+      generation_level_code = #{generationLevelCode,jdbcType=INTEGER},
+      generation_word = #{generationWord,jdbcType=VARCHAR},
+      identity_no = #{identityNo,jdbcType=VARCHAR},
+      birthday_time = #{birthdayTime,jdbcType=VARCHAR},
+      lunar_birthday_time = #{lunarBirthdayTime,jdbcType=VARCHAR},
+      birthday_time_tra = #{birthdayTimeTra,jdbcType=VARCHAR},
+      birthday_year = #{birthdayYear,jdbcType=VARCHAR},
+      birthday_year_tra = #{birthdayYearTra,jdbcType=VARCHAR},
+      deathday_time = #{deathdayTime,jdbcType=VARCHAR},
+      lunar_deathday_time = #{lunarDeathdayTime,jdbcType=VARCHAR},
+      deathday_time_tra = #{deathdayTimeTra,jdbcType=VARCHAR},
+      deathday_year = #{deathdayYear,jdbcType=VARCHAR},
+      deathday_year_tra = #{deathdayYearTra,jdbcType=VARCHAR},
+      buried_location = #{buriedLocation,jdbcType=VARCHAR},
+      pre_relation_list = #{preRelationList,jdbcType=VARCHAR},
+      post_relation_list = #{postRelationList,jdbcType=VARCHAR},
+      birthdate_type = #{birthdateType,jdbcType=INTEGER},
+      birthdate_monthtype = #{birthdateMonthtype,jdbcType=INTEGER},
+      deathdate_monthtype = #{deathdateMonthtype,jdbcType=INTEGER},
+      address_detail = #{addressDetail,jdbcType=VARCHAR},
+      adoptout = #{adoptout,jdbcType=INTEGER},
+      adoptout_detail = #{adoptoutDetail,jdbcType=VARCHAR},
+      uxorilocal = #{uxorilocal,jdbcType=INTEGER},
+      uxorilocal_detail = #{uxorilocalDetail,jdbcType=VARCHAR},
+      soninlaw = #{soninlaw,jdbcType=INTEGER},
+      soninlaw_detail = #{soninlawDetail,jdbcType=VARCHAR},
+      ranking = #{ranking,jdbcType=INTEGER},
+      rel_flag = #{relFlag,jdbcType=INTEGER},
+      alive_status = #{aliveStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      household_membercol = #{householdMembercol,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      other_personal_name = #{otherPersonalName,jdbcType=VARCHAR},
+      nick_personal_name = #{nickPersonalName,jdbcType=VARCHAR},
+      nick_mark = #{nickMark,jdbcType=VARCHAR},
+      live_place = #{livePlace,jdbcType=VARCHAR},
+      spouse_detail = #{spouseDetail,jdbcType=VARCHAR},
+      center_member_id = #{centerMemberId,jdbcType=INTEGER},
+      center_relation_code = #{centerRelationCode,jdbcType=VARCHAR},
+      woman_sec_marry_flag = #{womanSecMarryFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

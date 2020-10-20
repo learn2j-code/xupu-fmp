@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlm.fmp.mapper.FamilySettingMapper">
+  <resultMap id="BaseResultMap" type="com.dlm.fmp.pojo.FamilySetting">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="family_id" jdbcType="INTEGER" property="familyId" />
+    <result column="xupu_flag" jdbcType="INTEGER" property="xupuFlag" />
+    <result column="seniority_content" jdbcType="VARCHAR" property="seniorityContent" />
+    <result column="soninlaw_flag" jdbcType="INTEGER" property="soninlawFlag" />
+    <result column="unpay_flag" jdbcType="INTEGER" property="unpayFlag" />
+    <result column="xupu_charge" jdbcType="INTEGER" property="xupuCharge" />
+    <result column="each_cost" jdbcType="VARCHAR" property="eachCost" />
+    <result column="council_cost" jdbcType="VARCHAR" property="councilCost" />
+    <result column="discounts" jdbcType="VARCHAR" property="discounts" />
+    <result column="payee" jdbcType="INTEGER" property="payee" />
+    <result column="payment_way" jdbcType="INTEGER" property="paymentWay" />
+    <result column="qr_code" jdbcType="VARCHAR" property="qrCode" />
+    <result column="change_payment" jdbcType="INTEGER" property="changePayment" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, family_id, xupu_flag, seniority_content, soninlaw_flag, unpay_flag, xupu_charge, 
+    each_cost, council_cost, discounts, payee, payment_way, qr_code, change_payment, 
+    create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.dlm.fmp.pojo.FamilySettingExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from family_setting
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from family_setting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from family_setting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dlm.fmp.pojo.FamilySettingExample">
+    delete from family_setting
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dlm.fmp.pojo.FamilySetting">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into family_setting (family_id, xupu_flag, seniority_content, 
+      soninlaw_flag, unpay_flag, xupu_charge, 
+      each_cost, council_cost, discounts, 
+      payee, payment_way, qr_code, 
+      change_payment, create_time, update_time
+      )
+    values (#{familyId,jdbcType=INTEGER}, #{xupuFlag,jdbcType=INTEGER}, #{seniorityContent,jdbcType=VARCHAR}, 
+      #{soninlawFlag,jdbcType=INTEGER}, #{unpayFlag,jdbcType=INTEGER}, #{xupuCharge,jdbcType=INTEGER}, 
+      #{eachCost,jdbcType=VARCHAR}, #{councilCost,jdbcType=VARCHAR}, #{discounts,jdbcType=VARCHAR}, 
+      #{payee,jdbcType=INTEGER}, #{paymentWay,jdbcType=INTEGER}, #{qrCode,jdbcType=VARCHAR}, 
+      #{changePayment,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlm.fmp.pojo.FamilySetting">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into family_setting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="familyId != null">
+        family_id,
+      </if>
+      <if test="xupuFlag != null">
+        xupu_flag,
+      </if>
+      <if test="seniorityContent != null">
+        seniority_content,
+      </if>
+      <if test="soninlawFlag != null">
+        soninlaw_flag,
+      </if>
+      <if test="unpayFlag != null">
+        unpay_flag,
+      </if>
+      <if test="xupuCharge != null">
+        xupu_charge,
+      </if>
+      <if test="eachCost != null">
+        each_cost,
+      </if>
+      <if test="councilCost != null">
+        council_cost,
+      </if>
+      <if test="discounts != null">
+        discounts,
+      </if>
+      <if test="payee != null">
+        payee,
+      </if>
+      <if test="paymentWay != null">
+        payment_way,
+      </if>
+      <if test="qrCode != null">
+        qr_code,
+      </if>
+      <if test="changePayment != null">
+        change_payment,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="familyId != null">
+        #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="xupuFlag != null">
+        #{xupuFlag,jdbcType=INTEGER},
+      </if>
+      <if test="seniorityContent != null">
+        #{seniorityContent,jdbcType=VARCHAR},
+      </if>
+      <if test="soninlawFlag != null">
+        #{soninlawFlag,jdbcType=INTEGER},
+      </if>
+      <if test="unpayFlag != null">
+        #{unpayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="xupuCharge != null">
+        #{xupuCharge,jdbcType=INTEGER},
+      </if>
+      <if test="eachCost != null">
+        #{eachCost,jdbcType=VARCHAR},
+      </if>
+      <if test="councilCost != null">
+        #{councilCost,jdbcType=VARCHAR},
+      </if>
+      <if test="discounts != null">
+        #{discounts,jdbcType=VARCHAR},
+      </if>
+      <if test="payee != null">
+        #{payee,jdbcType=INTEGER},
+      </if>
+      <if test="paymentWay != null">
+        #{paymentWay,jdbcType=INTEGER},
+      </if>
+      <if test="qrCode != null">
+        #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="changePayment != null">
+        #{changePayment,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dlm.fmp.pojo.FamilySettingExample" resultType="java.lang.Long">
+    select count(*) from family_setting
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update family_setting
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyId != null">
+        family_id = #{record.familyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.xupuFlag != null">
+        xupu_flag = #{record.xupuFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.seniorityContent != null">
+        seniority_content = #{record.seniorityContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.soninlawFlag != null">
+        soninlaw_flag = #{record.soninlawFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.unpayFlag != null">
+        unpay_flag = #{record.unpayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.xupuCharge != null">
+        xupu_charge = #{record.xupuCharge,jdbcType=INTEGER},
+      </if>
+      <if test="record.eachCost != null">
+        each_cost = #{record.eachCost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.councilCost != null">
+        council_cost = #{record.councilCost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discounts != null">
+        discounts = #{record.discounts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payee != null">
+        payee = #{record.payee,jdbcType=INTEGER},
+      </if>
+      <if test="record.paymentWay != null">
+        payment_way = #{record.paymentWay,jdbcType=INTEGER},
+      </if>
+      <if test="record.qrCode != null">
+        qr_code = #{record.qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changePayment != null">
+        change_payment = #{record.changePayment,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update family_setting
+    set id = #{record.id,jdbcType=INTEGER},
+      family_id = #{record.familyId,jdbcType=INTEGER},
+      xupu_flag = #{record.xupuFlag,jdbcType=INTEGER},
+      seniority_content = #{record.seniorityContent,jdbcType=VARCHAR},
+      soninlaw_flag = #{record.soninlawFlag,jdbcType=INTEGER},
+      unpay_flag = #{record.unpayFlag,jdbcType=INTEGER},
+      xupu_charge = #{record.xupuCharge,jdbcType=INTEGER},
+      each_cost = #{record.eachCost,jdbcType=VARCHAR},
+      council_cost = #{record.councilCost,jdbcType=VARCHAR},
+      discounts = #{record.discounts,jdbcType=VARCHAR},
+      payee = #{record.payee,jdbcType=INTEGER},
+      payment_way = #{record.paymentWay,jdbcType=INTEGER},
+      qr_code = #{record.qrCode,jdbcType=VARCHAR},
+      change_payment = #{record.changePayment,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlm.fmp.pojo.FamilySetting">
+    update family_setting
+    <set>
+      <if test="familyId != null">
+        family_id = #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="xupuFlag != null">
+        xupu_flag = #{xupuFlag,jdbcType=INTEGER},
+      </if>
+      <if test="seniorityContent != null">
+        seniority_content = #{seniorityContent,jdbcType=VARCHAR},
+      </if>
+      <if test="soninlawFlag != null">
+        soninlaw_flag = #{soninlawFlag,jdbcType=INTEGER},
+      </if>
+      <if test="unpayFlag != null">
+        unpay_flag = #{unpayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="xupuCharge != null">
+        xupu_charge = #{xupuCharge,jdbcType=INTEGER},
+      </if>
+      <if test="eachCost != null">
+        each_cost = #{eachCost,jdbcType=VARCHAR},
+      </if>
+      <if test="councilCost != null">
+        council_cost = #{councilCost,jdbcType=VARCHAR},
+      </if>
+      <if test="discounts != null">
+        discounts = #{discounts,jdbcType=VARCHAR},
+      </if>
+      <if test="payee != null">
+        payee = #{payee,jdbcType=INTEGER},
+      </if>
+      <if test="paymentWay != null">
+        payment_way = #{paymentWay,jdbcType=INTEGER},
+      </if>
+      <if test="qrCode != null">
+        qr_code = #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="changePayment != null">
+        change_payment = #{changePayment,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlm.fmp.pojo.FamilySetting">
+    update family_setting
+    set family_id = #{familyId,jdbcType=INTEGER},
+      xupu_flag = #{xupuFlag,jdbcType=INTEGER},
+      seniority_content = #{seniorityContent,jdbcType=VARCHAR},
+      soninlaw_flag = #{soninlawFlag,jdbcType=INTEGER},
+      unpay_flag = #{unpayFlag,jdbcType=INTEGER},
+      xupu_charge = #{xupuCharge,jdbcType=INTEGER},
+      each_cost = #{eachCost,jdbcType=VARCHAR},
+      council_cost = #{councilCost,jdbcType=VARCHAR},
+      discounts = #{discounts,jdbcType=VARCHAR},
+      payee = #{payee,jdbcType=INTEGER},
+      payment_way = #{paymentWay,jdbcType=INTEGER},
+      qr_code = #{qrCode,jdbcType=VARCHAR},
+      change_payment = #{changePayment,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,1067 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlm.fmp.mapper.FamilyMemberMapper">
+  <resultMap id="BaseResultMap" type="com.dlm.fmp.pojo.FamilyMember">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="family_id" jdbcType="INTEGER" property="familyId" />
+    <result column="book_id" jdbcType="INTEGER" property="bookId" />
+    <result column="volume_id" jdbcType="INTEGER" property="volumeId" />
+    <result column="sub_clan_id" jdbcType="INTEGER" property="subClanId" />
+    <result column="family_member_code" jdbcType="VARCHAR" property="familyMemberCode" />
+    <result column="father_name" jdbcType="VARCHAR" property="fatherName" />
+    <result column="spouse_name" jdbcType="VARCHAR" property="spouseName" />
+    <result column="father_name_pinyin" jdbcType="VARCHAR" property="fatherNamePinyin" />
+    <result column="spouse_name_pinyin" jdbcType="VARCHAR" property="spouseNamePinyin" />
+    <result column="rel_keyword" jdbcType="VARCHAR" property="relKeyword" />
+    <result column="member_surname" jdbcType="VARCHAR" property="memberSurname" />
+    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
+    <result column="member_name_pinyin" jdbcType="VARCHAR" property="memberNamePinyin" />
+    <result column="member_gender" jdbcType="INTEGER" property="memberGender" />
+    <result column="member_detail" jdbcType="VARCHAR" property="memberDetail" />
+    <result column="native_place" jdbcType="VARCHAR" property="nativePlace" />
+    <result column="member_story" jdbcType="VARCHAR" property="memberStory" />
+    <result column="generation_num" jdbcType="INTEGER" property="generationNum" />
+    <result column="order_no" jdbcType="INTEGER" property="orderNo" />
+    <result column="sec_personal_name" jdbcType="VARCHAR" property="secPersonalName" />
+    <result column="mark" jdbcType="VARCHAR" property="mark" />
+    <result column="generation_word" jdbcType="VARCHAR" property="generationWord" />
+    <result column="birthday_time" jdbcType="VARCHAR" property="birthdayTime" />
+    <result column="deathday_time" jdbcType="VARCHAR" property="deathdayTime" />
+    <result column="buried_location" jdbcType="VARCHAR" property="buriedLocation" />
+    <result column="son" jdbcType="VARCHAR" property="son" />
+    <result column="daughter" jdbcType="VARCHAR" property="daughter" />
+    <result column="ranking" jdbcType="INTEGER" property="ranking" />
+    <result column="pre_relation_list" jdbcType="VARCHAR" property="preRelationList" />
+    <result column="post_relation_list" jdbcType="VARCHAR" property="postRelationList" />
+    <result column="rel_flag" jdbcType="INTEGER" property="relFlag" />
+    <result column="pay_flag" jdbcType="INTEGER" property="payFlag" />
+    <result column="audit_flag" jdbcType="INTEGER" property="auditFlag" />
+    <result column="sub_family_flag" jdbcType="INTEGER" property="subFamilyFlag" />
+    <result column="sub_family_code" jdbcType="VARCHAR" property="subFamilyCode" />
+    <result column="household_in_flag" jdbcType="INTEGER" property="householdInFlag" />
+    <result column="household_in_time" jdbcType="VARCHAR" property="householdInTime" />
+    <result column="source" jdbcType="INTEGER" property="source" />
+    <result column="version_source" jdbcType="INTEGER" property="versionSource" />
+    <result column="version_id" jdbcType="INTEGER" property="versionId" />
+    <result column="version_member_id" jdbcType="INTEGER" property="versionMemberId" />
+    <result column="birthdate_type" jdbcType="INTEGER" property="birthdateType" />
+    <result column="relative_flag" jdbcType="INTEGER" property="relativeFlag" />
+    <result column="address_detail" jdbcType="VARCHAR" property="addressDetail" />
+    <result column="adoptout" jdbcType="INTEGER" property="adoptout" />
+    <result column="adoptout_detail" jdbcType="VARCHAR" property="adoptoutDetail" />
+    <result column="uxorilocal" jdbcType="INTEGER" property="uxorilocal" />
+    <result column="uxorilocal_detail" jdbcType="VARCHAR" property="uxorilocalDetail" />
+    <result column="soninlaw" jdbcType="INTEGER" property="soninlaw" />
+    <result column="soninlaw_detail" jdbcType="VARCHAR" property="soninlawDetail" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="to_locate" jdbcType="INTEGER" property="toLocate" />
+    <result column="son_num" jdbcType="INTEGER" property="sonNum" />
+    <result column="son_num_real" jdbcType="INTEGER" property="sonNumReal" />
+    <result column="rel_error_flag" jdbcType="INTEGER" property="relErrorFlag" />
+    <result column="son_num_diff" jdbcType="INTEGER" property="sonNumDiff" />
+    <result column="already_exist" jdbcType="INTEGER" property="alreadyExist" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, family_id, book_id, volume_id, sub_clan_id, family_member_code, father_name, 
+    spouse_name, father_name_pinyin, spouse_name_pinyin, rel_keyword, member_surname, 
+    member_name, member_name_pinyin, member_gender, member_detail, native_place, member_story, 
+    generation_num, order_no, sec_personal_name, mark, generation_word, birthday_time, 
+    deathday_time, buried_location, son, daughter, ranking, pre_relation_list, post_relation_list, 
+    rel_flag, pay_flag, audit_flag, sub_family_flag, sub_family_code, household_in_flag, 
+    household_in_time, source, version_source, version_id, version_member_id, birthdate_type, 
+    relative_flag, address_detail, adoptout, adoptout_detail, uxorilocal, uxorilocal_detail, 
+    soninlaw, soninlaw_detail, create_time, update_time, to_locate, son_num, son_num_real, 
+    rel_error_flag, son_num_diff, already_exist
+  </sql>
+  <select id="selectByExample" parameterType="com.dlm.fmp.pojo.FamilyMemberExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from family_member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from family_member
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from family_member
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dlm.fmp.pojo.FamilyMemberExample">
+    delete from family_member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dlm.fmp.pojo.FamilyMember">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into family_member (family_id, book_id, volume_id, 
+      sub_clan_id, family_member_code, father_name, 
+      spouse_name, father_name_pinyin, spouse_name_pinyin, 
+      rel_keyword, member_surname, member_name, 
+      member_name_pinyin, member_gender, member_detail, 
+      native_place, member_story, generation_num, 
+      order_no, sec_personal_name, mark, 
+      generation_word, birthday_time, deathday_time, 
+      buried_location, son, daughter, 
+      ranking, pre_relation_list, post_relation_list, 
+      rel_flag, pay_flag, audit_flag, 
+      sub_family_flag, sub_family_code, household_in_flag, 
+      household_in_time, source, version_source, 
+      version_id, version_member_id, birthdate_type, 
+      relative_flag, address_detail, adoptout, 
+      adoptout_detail, uxorilocal, uxorilocal_detail, 
+      soninlaw, soninlaw_detail, create_time, 
+      update_time, to_locate, son_num, 
+      son_num_real, rel_error_flag, son_num_diff, 
+      already_exist)
+    values (#{familyId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, #{volumeId,jdbcType=INTEGER}, 
+      #{subClanId,jdbcType=INTEGER}, #{familyMemberCode,jdbcType=VARCHAR}, #{fatherName,jdbcType=VARCHAR}, 
+      #{spouseName,jdbcType=VARCHAR}, #{fatherNamePinyin,jdbcType=VARCHAR}, #{spouseNamePinyin,jdbcType=VARCHAR}, 
+      #{relKeyword,jdbcType=VARCHAR}, #{memberSurname,jdbcType=VARCHAR}, #{memberName,jdbcType=VARCHAR}, 
+      #{memberNamePinyin,jdbcType=VARCHAR}, #{memberGender,jdbcType=INTEGER}, #{memberDetail,jdbcType=VARCHAR}, 
+      #{nativePlace,jdbcType=VARCHAR}, #{memberStory,jdbcType=VARCHAR}, #{generationNum,jdbcType=INTEGER}, 
+      #{orderNo,jdbcType=INTEGER}, #{secPersonalName,jdbcType=VARCHAR}, #{mark,jdbcType=VARCHAR}, 
+      #{generationWord,jdbcType=VARCHAR}, #{birthdayTime,jdbcType=VARCHAR}, #{deathdayTime,jdbcType=VARCHAR}, 
+      #{buriedLocation,jdbcType=VARCHAR}, #{son,jdbcType=VARCHAR}, #{daughter,jdbcType=VARCHAR}, 
+      #{ranking,jdbcType=INTEGER}, #{preRelationList,jdbcType=VARCHAR}, #{postRelationList,jdbcType=VARCHAR}, 
+      #{relFlag,jdbcType=INTEGER}, #{payFlag,jdbcType=INTEGER}, #{auditFlag,jdbcType=INTEGER}, 
+      #{subFamilyFlag,jdbcType=INTEGER}, #{subFamilyCode,jdbcType=VARCHAR}, #{householdInFlag,jdbcType=INTEGER}, 
+      #{householdInTime,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, #{versionSource,jdbcType=INTEGER}, 
+      #{versionId,jdbcType=INTEGER}, #{versionMemberId,jdbcType=INTEGER}, #{birthdateType,jdbcType=INTEGER}, 
+      #{relativeFlag,jdbcType=INTEGER}, #{addressDetail,jdbcType=VARCHAR}, #{adoptout,jdbcType=INTEGER}, 
+      #{adoptoutDetail,jdbcType=VARCHAR}, #{uxorilocal,jdbcType=INTEGER}, #{uxorilocalDetail,jdbcType=VARCHAR}, 
+      #{soninlaw,jdbcType=INTEGER}, #{soninlawDetail,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{toLocate,jdbcType=INTEGER}, #{sonNum,jdbcType=INTEGER}, 
+      #{sonNumReal,jdbcType=INTEGER}, #{relErrorFlag,jdbcType=INTEGER}, #{sonNumDiff,jdbcType=INTEGER}, 
+      #{alreadyExist,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlm.fmp.pojo.FamilyMember">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into family_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="familyId != null">
+        family_id,
+      </if>
+      <if test="bookId != null">
+        book_id,
+      </if>
+      <if test="volumeId != null">
+        volume_id,
+      </if>
+      <if test="subClanId != null">
+        sub_clan_id,
+      </if>
+      <if test="familyMemberCode != null">
+        family_member_code,
+      </if>
+      <if test="fatherName != null">
+        father_name,
+      </if>
+      <if test="spouseName != null">
+        spouse_name,
+      </if>
+      <if test="fatherNamePinyin != null">
+        father_name_pinyin,
+      </if>
+      <if test="spouseNamePinyin != null">
+        spouse_name_pinyin,
+      </if>
+      <if test="relKeyword != null">
+        rel_keyword,
+      </if>
+      <if test="memberSurname != null">
+        member_surname,
+      </if>
+      <if test="memberName != null">
+        member_name,
+      </if>
+      <if test="memberNamePinyin != null">
+        member_name_pinyin,
+      </if>
+      <if test="memberGender != null">
+        member_gender,
+      </if>
+      <if test="memberDetail != null">
+        member_detail,
+      </if>
+      <if test="nativePlace != null">
+        native_place,
+      </if>
+      <if test="memberStory != null">
+        member_story,
+      </if>
+      <if test="generationNum != null">
+        generation_num,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="secPersonalName != null">
+        sec_personal_name,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+      <if test="generationWord != null">
+        generation_word,
+      </if>
+      <if test="birthdayTime != null">
+        birthday_time,
+      </if>
+      <if test="deathdayTime != null">
+        deathday_time,
+      </if>
+      <if test="buriedLocation != null">
+        buried_location,
+      </if>
+      <if test="son != null">
+        son,
+      </if>
+      <if test="daughter != null">
+        daughter,
+      </if>
+      <if test="ranking != null">
+        ranking,
+      </if>
+      <if test="preRelationList != null">
+        pre_relation_list,
+      </if>
+      <if test="postRelationList != null">
+        post_relation_list,
+      </if>
+      <if test="relFlag != null">
+        rel_flag,
+      </if>
+      <if test="payFlag != null">
+        pay_flag,
+      </if>
+      <if test="auditFlag != null">
+        audit_flag,
+      </if>
+      <if test="subFamilyFlag != null">
+        sub_family_flag,
+      </if>
+      <if test="subFamilyCode != null">
+        sub_family_code,
+      </if>
+      <if test="householdInFlag != null">
+        household_in_flag,
+      </if>
+      <if test="householdInTime != null">
+        household_in_time,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="versionSource != null">
+        version_source,
+      </if>
+      <if test="versionId != null">
+        version_id,
+      </if>
+      <if test="versionMemberId != null">
+        version_member_id,
+      </if>
+      <if test="birthdateType != null">
+        birthdate_type,
+      </if>
+      <if test="relativeFlag != null">
+        relative_flag,
+      </if>
+      <if test="addressDetail != null">
+        address_detail,
+      </if>
+      <if test="adoptout != null">
+        adoptout,
+      </if>
+      <if test="adoptoutDetail != null">
+        adoptout_detail,
+      </if>
+      <if test="uxorilocal != null">
+        uxorilocal,
+      </if>
+      <if test="uxorilocalDetail != null">
+        uxorilocal_detail,
+      </if>
+      <if test="soninlaw != null">
+        soninlaw,
+      </if>
+      <if test="soninlawDetail != null">
+        soninlaw_detail,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="toLocate != null">
+        to_locate,
+      </if>
+      <if test="sonNum != null">
+        son_num,
+      </if>
+      <if test="sonNumReal != null">
+        son_num_real,
+      </if>
+      <if test="relErrorFlag != null">
+        rel_error_flag,
+      </if>
+      <if test="sonNumDiff != null">
+        son_num_diff,
+      </if>
+      <if test="alreadyExist != null">
+        already_exist,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="familyId != null">
+        #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="bookId != null">
+        #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="volumeId != null">
+        #{volumeId,jdbcType=INTEGER},
+      </if>
+      <if test="subClanId != null">
+        #{subClanId,jdbcType=INTEGER},
+      </if>
+      <if test="familyMemberCode != null">
+        #{familyMemberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherName != null">
+        #{fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseName != null">
+        #{spouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherNamePinyin != null">
+        #{fatherNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseNamePinyin != null">
+        #{spouseNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="relKeyword != null">
+        #{relKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSurname != null">
+        #{memberSurname,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null">
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberNamePinyin != null">
+        #{memberNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="memberGender != null">
+        #{memberGender,jdbcType=INTEGER},
+      </if>
+      <if test="memberDetail != null">
+        #{memberDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null">
+        #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="memberStory != null">
+        #{memberStory,jdbcType=VARCHAR},
+      </if>
+      <if test="generationNum != null">
+        #{generationNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="secPersonalName != null">
+        #{secPersonalName,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="generationWord != null">
+        #{generationWord,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdayTime != null">
+        #{birthdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deathdayTime != null">
+        #{deathdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="buriedLocation != null">
+        #{buriedLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="son != null">
+        #{son,jdbcType=VARCHAR},
+      </if>
+      <if test="daughter != null">
+        #{daughter,jdbcType=VARCHAR},
+      </if>
+      <if test="ranking != null">
+        #{ranking,jdbcType=INTEGER},
+      </if>
+      <if test="preRelationList != null">
+        #{preRelationList,jdbcType=VARCHAR},
+      </if>
+      <if test="postRelationList != null">
+        #{postRelationList,jdbcType=VARCHAR},
+      </if>
+      <if test="relFlag != null">
+        #{relFlag,jdbcType=INTEGER},
+      </if>
+      <if test="payFlag != null">
+        #{payFlag,jdbcType=INTEGER},
+      </if>
+      <if test="auditFlag != null">
+        #{auditFlag,jdbcType=INTEGER},
+      </if>
+      <if test="subFamilyFlag != null">
+        #{subFamilyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="subFamilyCode != null">
+        #{subFamilyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="householdInFlag != null">
+        #{householdInFlag,jdbcType=INTEGER},
+      </if>
+      <if test="householdInTime != null">
+        #{householdInTime,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="versionSource != null">
+        #{versionSource,jdbcType=INTEGER},
+      </if>
+      <if test="versionId != null">
+        #{versionId,jdbcType=INTEGER},
+      </if>
+      <if test="versionMemberId != null">
+        #{versionMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="birthdateType != null">
+        #{birthdateType,jdbcType=INTEGER},
+      </if>
+      <if test="relativeFlag != null">
+        #{relativeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="addressDetail != null">
+        #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="adoptout != null">
+        #{adoptout,jdbcType=INTEGER},
+      </if>
+      <if test="adoptoutDetail != null">
+        #{adoptoutDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="uxorilocal != null">
+        #{uxorilocal,jdbcType=INTEGER},
+      </if>
+      <if test="uxorilocalDetail != null">
+        #{uxorilocalDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="soninlaw != null">
+        #{soninlaw,jdbcType=INTEGER},
+      </if>
+      <if test="soninlawDetail != null">
+        #{soninlawDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toLocate != null">
+        #{toLocate,jdbcType=INTEGER},
+      </if>
+      <if test="sonNum != null">
+        #{sonNum,jdbcType=INTEGER},
+      </if>
+      <if test="sonNumReal != null">
+        #{sonNumReal,jdbcType=INTEGER},
+      </if>
+      <if test="relErrorFlag != null">
+        #{relErrorFlag,jdbcType=INTEGER},
+      </if>
+      <if test="sonNumDiff != null">
+        #{sonNumDiff,jdbcType=INTEGER},
+      </if>
+      <if test="alreadyExist != null">
+        #{alreadyExist,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dlm.fmp.pojo.FamilyMemberExample" resultType="java.lang.Long">
+    select count(*) from family_member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update family_member
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyId != null">
+        family_id = #{record.familyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bookId != null">
+        book_id = #{record.bookId,jdbcType=INTEGER},
+      </if>
+      <if test="record.volumeId != null">
+        volume_id = #{record.volumeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.subClanId != null">
+        sub_clan_id = #{record.subClanId,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyMemberCode != null">
+        family_member_code = #{record.familyMemberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatherName != null">
+        father_name = #{record.fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spouseName != null">
+        spouse_name = #{record.spouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatherNamePinyin != null">
+        father_name_pinyin = #{record.fatherNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spouseNamePinyin != null">
+        spouse_name_pinyin = #{record.spouseNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relKeyword != null">
+        rel_keyword = #{record.relKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberSurname != null">
+        member_surname = #{record.memberSurname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberName != null">
+        member_name = #{record.memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberNamePinyin != null">
+        member_name_pinyin = #{record.memberNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberGender != null">
+        member_gender = #{record.memberGender,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberDetail != null">
+        member_detail = #{record.memberDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nativePlace != null">
+        native_place = #{record.nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberStory != null">
+        member_story = #{record.memberStory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.generationNum != null">
+        generation_num = #{record.generationNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNo != null">
+        order_no = #{record.orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.secPersonalName != null">
+        sec_personal_name = #{record.secPersonalName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mark != null">
+        mark = #{record.mark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.generationWord != null">
+        generation_word = #{record.generationWord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthdayTime != null">
+        birthday_time = #{record.birthdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deathdayTime != null">
+        deathday_time = #{record.deathdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buriedLocation != null">
+        buried_location = #{record.buriedLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.son != null">
+        son = #{record.son,jdbcType=VARCHAR},
+      </if>
+      <if test="record.daughter != null">
+        daughter = #{record.daughter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ranking != null">
+        ranking = #{record.ranking,jdbcType=INTEGER},
+      </if>
+      <if test="record.preRelationList != null">
+        pre_relation_list = #{record.preRelationList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postRelationList != null">
+        post_relation_list = #{record.postRelationList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relFlag != null">
+        rel_flag = #{record.relFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.payFlag != null">
+        pay_flag = #{record.payFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditFlag != null">
+        audit_flag = #{record.auditFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.subFamilyFlag != null">
+        sub_family_flag = #{record.subFamilyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.subFamilyCode != null">
+        sub_family_code = #{record.subFamilyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdInFlag != null">
+        household_in_flag = #{record.householdInFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.householdInTime != null">
+        household_in_time = #{record.householdInTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null">
+        source = #{record.source,jdbcType=INTEGER},
+      </if>
+      <if test="record.versionSource != null">
+        version_source = #{record.versionSource,jdbcType=INTEGER},
+      </if>
+      <if test="record.versionId != null">
+        version_id = #{record.versionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.versionMemberId != null">
+        version_member_id = #{record.versionMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.birthdateType != null">
+        birthdate_type = #{record.birthdateType,jdbcType=INTEGER},
+      </if>
+      <if test="record.relativeFlag != null">
+        relative_flag = #{record.relativeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressDetail != null">
+        address_detail = #{record.addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adoptout != null">
+        adoptout = #{record.adoptout,jdbcType=INTEGER},
+      </if>
+      <if test="record.adoptoutDetail != null">
+        adoptout_detail = #{record.adoptoutDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uxorilocal != null">
+        uxorilocal = #{record.uxorilocal,jdbcType=INTEGER},
+      </if>
+      <if test="record.uxorilocalDetail != null">
+        uxorilocal_detail = #{record.uxorilocalDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.soninlaw != null">
+        soninlaw = #{record.soninlaw,jdbcType=INTEGER},
+      </if>
+      <if test="record.soninlawDetail != null">
+        soninlaw_detail = #{record.soninlawDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.toLocate != null">
+        to_locate = #{record.toLocate,jdbcType=INTEGER},
+      </if>
+      <if test="record.sonNum != null">
+        son_num = #{record.sonNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.sonNumReal != null">
+        son_num_real = #{record.sonNumReal,jdbcType=INTEGER},
+      </if>
+      <if test="record.relErrorFlag != null">
+        rel_error_flag = #{record.relErrorFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.sonNumDiff != null">
+        son_num_diff = #{record.sonNumDiff,jdbcType=INTEGER},
+      </if>
+      <if test="record.alreadyExist != null">
+        already_exist = #{record.alreadyExist,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update family_member
+    set id = #{record.id,jdbcType=INTEGER},
+      family_id = #{record.familyId,jdbcType=INTEGER},
+      book_id = #{record.bookId,jdbcType=INTEGER},
+      volume_id = #{record.volumeId,jdbcType=INTEGER},
+      sub_clan_id = #{record.subClanId,jdbcType=INTEGER},
+      family_member_code = #{record.familyMemberCode,jdbcType=VARCHAR},
+      father_name = #{record.fatherName,jdbcType=VARCHAR},
+      spouse_name = #{record.spouseName,jdbcType=VARCHAR},
+      father_name_pinyin = #{record.fatherNamePinyin,jdbcType=VARCHAR},
+      spouse_name_pinyin = #{record.spouseNamePinyin,jdbcType=VARCHAR},
+      rel_keyword = #{record.relKeyword,jdbcType=VARCHAR},
+      member_surname = #{record.memberSurname,jdbcType=VARCHAR},
+      member_name = #{record.memberName,jdbcType=VARCHAR},
+      member_name_pinyin = #{record.memberNamePinyin,jdbcType=VARCHAR},
+      member_gender = #{record.memberGender,jdbcType=INTEGER},
+      member_detail = #{record.memberDetail,jdbcType=VARCHAR},
+      native_place = #{record.nativePlace,jdbcType=VARCHAR},
+      member_story = #{record.memberStory,jdbcType=VARCHAR},
+      generation_num = #{record.generationNum,jdbcType=INTEGER},
+      order_no = #{record.orderNo,jdbcType=INTEGER},
+      sec_personal_name = #{record.secPersonalName,jdbcType=VARCHAR},
+      mark = #{record.mark,jdbcType=VARCHAR},
+      generation_word = #{record.generationWord,jdbcType=VARCHAR},
+      birthday_time = #{record.birthdayTime,jdbcType=VARCHAR},
+      deathday_time = #{record.deathdayTime,jdbcType=VARCHAR},
+      buried_location = #{record.buriedLocation,jdbcType=VARCHAR},
+      son = #{record.son,jdbcType=VARCHAR},
+      daughter = #{record.daughter,jdbcType=VARCHAR},
+      ranking = #{record.ranking,jdbcType=INTEGER},
+      pre_relation_list = #{record.preRelationList,jdbcType=VARCHAR},
+      post_relation_list = #{record.postRelationList,jdbcType=VARCHAR},
+      rel_flag = #{record.relFlag,jdbcType=INTEGER},
+      pay_flag = #{record.payFlag,jdbcType=INTEGER},
+      audit_flag = #{record.auditFlag,jdbcType=INTEGER},
+      sub_family_flag = #{record.subFamilyFlag,jdbcType=INTEGER},
+      sub_family_code = #{record.subFamilyCode,jdbcType=VARCHAR},
+      household_in_flag = #{record.householdInFlag,jdbcType=INTEGER},
+      household_in_time = #{record.householdInTime,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=INTEGER},
+      version_source = #{record.versionSource,jdbcType=INTEGER},
+      version_id = #{record.versionId,jdbcType=INTEGER},
+      version_member_id = #{record.versionMemberId,jdbcType=INTEGER},
+      birthdate_type = #{record.birthdateType,jdbcType=INTEGER},
+      relative_flag = #{record.relativeFlag,jdbcType=INTEGER},
+      address_detail = #{record.addressDetail,jdbcType=VARCHAR},
+      adoptout = #{record.adoptout,jdbcType=INTEGER},
+      adoptout_detail = #{record.adoptoutDetail,jdbcType=VARCHAR},
+      uxorilocal = #{record.uxorilocal,jdbcType=INTEGER},
+      uxorilocal_detail = #{record.uxorilocalDetail,jdbcType=VARCHAR},
+      soninlaw = #{record.soninlaw,jdbcType=INTEGER},
+      soninlaw_detail = #{record.soninlawDetail,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      to_locate = #{record.toLocate,jdbcType=INTEGER},
+      son_num = #{record.sonNum,jdbcType=INTEGER},
+      son_num_real = #{record.sonNumReal,jdbcType=INTEGER},
+      rel_error_flag = #{record.relErrorFlag,jdbcType=INTEGER},
+      son_num_diff = #{record.sonNumDiff,jdbcType=INTEGER},
+      already_exist = #{record.alreadyExist,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlm.fmp.pojo.FamilyMember">
+    update family_member
+    <set>
+      <if test="familyId != null">
+        family_id = #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="bookId != null">
+        book_id = #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="volumeId != null">
+        volume_id = #{volumeId,jdbcType=INTEGER},
+      </if>
+      <if test="subClanId != null">
+        sub_clan_id = #{subClanId,jdbcType=INTEGER},
+      </if>
+      <if test="familyMemberCode != null">
+        family_member_code = #{familyMemberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherName != null">
+        father_name = #{fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseName != null">
+        spouse_name = #{spouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherNamePinyin != null">
+        father_name_pinyin = #{fatherNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseNamePinyin != null">
+        spouse_name_pinyin = #{spouseNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="relKeyword != null">
+        rel_keyword = #{relKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSurname != null">
+        member_surname = #{memberSurname,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null">
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberNamePinyin != null">
+        member_name_pinyin = #{memberNamePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="memberGender != null">
+        member_gender = #{memberGender,jdbcType=INTEGER},
+      </if>
+      <if test="memberDetail != null">
+        member_detail = #{memberDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null">
+        native_place = #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="memberStory != null">
+        member_story = #{memberStory,jdbcType=VARCHAR},
+      </if>
+      <if test="generationNum != null">
+        generation_num = #{generationNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="secPersonalName != null">
+        sec_personal_name = #{secPersonalName,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="generationWord != null">
+        generation_word = #{generationWord,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdayTime != null">
+        birthday_time = #{birthdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deathdayTime != null">
+        deathday_time = #{deathdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="buriedLocation != null">
+        buried_location = #{buriedLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="son != null">
+        son = #{son,jdbcType=VARCHAR},
+      </if>
+      <if test="daughter != null">
+        daughter = #{daughter,jdbcType=VARCHAR},
+      </if>
+      <if test="ranking != null">
+        ranking = #{ranking,jdbcType=INTEGER},
+      </if>
+      <if test="preRelationList != null">
+        pre_relation_list = #{preRelationList,jdbcType=VARCHAR},
+      </if>
+      <if test="postRelationList != null">
+        post_relation_list = #{postRelationList,jdbcType=VARCHAR},
+      </if>
+      <if test="relFlag != null">
+        rel_flag = #{relFlag,jdbcType=INTEGER},
+      </if>
+      <if test="payFlag != null">
+        pay_flag = #{payFlag,jdbcType=INTEGER},
+      </if>
+      <if test="auditFlag != null">
+        audit_flag = #{auditFlag,jdbcType=INTEGER},
+      </if>
+      <if test="subFamilyFlag != null">
+        sub_family_flag = #{subFamilyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="subFamilyCode != null">
+        sub_family_code = #{subFamilyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="householdInFlag != null">
+        household_in_flag = #{householdInFlag,jdbcType=INTEGER},
+      </if>
+      <if test="householdInTime != null">
+        household_in_time = #{householdInTime,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="versionSource != null">
+        version_source = #{versionSource,jdbcType=INTEGER},
+      </if>
+      <if test="versionId != null">
+        version_id = #{versionId,jdbcType=INTEGER},
+      </if>
+      <if test="versionMemberId != null">
+        version_member_id = #{versionMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="birthdateType != null">
+        birthdate_type = #{birthdateType,jdbcType=INTEGER},
+      </if>
+      <if test="relativeFlag != null">
+        relative_flag = #{relativeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="addressDetail != null">
+        address_detail = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="adoptout != null">
+        adoptout = #{adoptout,jdbcType=INTEGER},
+      </if>
+      <if test="adoptoutDetail != null">
+        adoptout_detail = #{adoptoutDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="uxorilocal != null">
+        uxorilocal = #{uxorilocal,jdbcType=INTEGER},
+      </if>
+      <if test="uxorilocalDetail != null">
+        uxorilocal_detail = #{uxorilocalDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="soninlaw != null">
+        soninlaw = #{soninlaw,jdbcType=INTEGER},
+      </if>
+      <if test="soninlawDetail != null">
+        soninlaw_detail = #{soninlawDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toLocate != null">
+        to_locate = #{toLocate,jdbcType=INTEGER},
+      </if>
+      <if test="sonNum != null">
+        son_num = #{sonNum,jdbcType=INTEGER},
+      </if>
+      <if test="sonNumReal != null">
+        son_num_real = #{sonNumReal,jdbcType=INTEGER},
+      </if>
+      <if test="relErrorFlag != null">
+        rel_error_flag = #{relErrorFlag,jdbcType=INTEGER},
+      </if>
+      <if test="sonNumDiff != null">
+        son_num_diff = #{sonNumDiff,jdbcType=INTEGER},
+      </if>
+      <if test="alreadyExist != null">
+        already_exist = #{alreadyExist,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlm.fmp.pojo.FamilyMember">
+    update family_member
+    set family_id = #{familyId,jdbcType=INTEGER},
+      book_id = #{bookId,jdbcType=INTEGER},
+      volume_id = #{volumeId,jdbcType=INTEGER},
+      sub_clan_id = #{subClanId,jdbcType=INTEGER},
+      family_member_code = #{familyMemberCode,jdbcType=VARCHAR},
+      father_name = #{fatherName,jdbcType=VARCHAR},
+      spouse_name = #{spouseName,jdbcType=VARCHAR},
+      father_name_pinyin = #{fatherNamePinyin,jdbcType=VARCHAR},
+      spouse_name_pinyin = #{spouseNamePinyin,jdbcType=VARCHAR},
+      rel_keyword = #{relKeyword,jdbcType=VARCHAR},
+      member_surname = #{memberSurname,jdbcType=VARCHAR},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      member_name_pinyin = #{memberNamePinyin,jdbcType=VARCHAR},
+      member_gender = #{memberGender,jdbcType=INTEGER},
+      member_detail = #{memberDetail,jdbcType=VARCHAR},
+      native_place = #{nativePlace,jdbcType=VARCHAR},
+      member_story = #{memberStory,jdbcType=VARCHAR},
+      generation_num = #{generationNum,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=INTEGER},
+      sec_personal_name = #{secPersonalName,jdbcType=VARCHAR},
+      mark = #{mark,jdbcType=VARCHAR},
+      generation_word = #{generationWord,jdbcType=VARCHAR},
+      birthday_time = #{birthdayTime,jdbcType=VARCHAR},
+      deathday_time = #{deathdayTime,jdbcType=VARCHAR},
+      buried_location = #{buriedLocation,jdbcType=VARCHAR},
+      son = #{son,jdbcType=VARCHAR},
+      daughter = #{daughter,jdbcType=VARCHAR},
+      ranking = #{ranking,jdbcType=INTEGER},
+      pre_relation_list = #{preRelationList,jdbcType=VARCHAR},
+      post_relation_list = #{postRelationList,jdbcType=VARCHAR},
+      rel_flag = #{relFlag,jdbcType=INTEGER},
+      pay_flag = #{payFlag,jdbcType=INTEGER},
+      audit_flag = #{auditFlag,jdbcType=INTEGER},
+      sub_family_flag = #{subFamilyFlag,jdbcType=INTEGER},
+      sub_family_code = #{subFamilyCode,jdbcType=VARCHAR},
+      household_in_flag = #{householdInFlag,jdbcType=INTEGER},
+      household_in_time = #{householdInTime,jdbcType=VARCHAR},
+      source = #{source,jdbcType=INTEGER},
+      version_source = #{versionSource,jdbcType=INTEGER},
+      version_id = #{versionId,jdbcType=INTEGER},
+      version_member_id = #{versionMemberId,jdbcType=INTEGER},
+      birthdate_type = #{birthdateType,jdbcType=INTEGER},
+      relative_flag = #{relativeFlag,jdbcType=INTEGER},
+      address_detail = #{addressDetail,jdbcType=VARCHAR},
+      adoptout = #{adoptout,jdbcType=INTEGER},
+      adoptout_detail = #{adoptoutDetail,jdbcType=VARCHAR},
+      uxorilocal = #{uxorilocal,jdbcType=INTEGER},
+      uxorilocal_detail = #{uxorilocalDetail,jdbcType=VARCHAR},
+      soninlaw = #{soninlaw,jdbcType=INTEGER},
+      soninlaw_detail = #{soninlawDetail,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      to_locate = #{toLocate,jdbcType=INTEGER},
+      son_num = #{sonNum,jdbcType=INTEGER},
+      son_num_real = #{sonNumReal,jdbcType=INTEGER},
+      rel_error_flag = #{relErrorFlag,jdbcType=INTEGER},
+      son_num_diff = #{sonNumDiff,jdbcType=INTEGER},
+      already_exist = #{alreadyExist,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

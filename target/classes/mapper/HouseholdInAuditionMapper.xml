@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlm.fmp.mapper.HouseholdInAuditionMapper">
+  <resultMap id="BaseResultMap" type="com.dlm.fmp.pojo.HouseholdInAudition">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="family_id" jdbcType="INTEGER" property="familyId" />
+    <result column="household_id" jdbcType="INTEGER" property="householdId" />
+    <result column="sub_family_name" jdbcType="VARCHAR" property="subFamilyName" />
+    <result column="sub_family_code" jdbcType="VARCHAR" property="subFamilyCode" />
+    <result column="family_member_id" jdbcType="INTEGER" property="familyMemberId" />
+    <result column="family_member_name" jdbcType="VARCHAR" property="familyMemberName" />
+    <result column="family_member_gm" jdbcType="INTEGER" property="familyMemberGm" />
+    <result column="family_name" jdbcType="VARCHAR" property="familyName" />
+    <result column="totem_address" jdbcType="VARCHAR" property="totemAddress" />
+    <result column="proposer" jdbcType="VARCHAR" property="proposer" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="pay_flag" jdbcType="INTEGER" property="payFlag" />
+    <result column="audit_flag" jdbcType="INTEGER" property="auditFlag" />
+    <result column="conform_flag" jdbcType="INTEGER" property="conformFlag" />
+    <result column="fail_reason" jdbcType="VARCHAR" property="failReason" />
+    <result column="total_money" jdbcType="VARCHAR" property="totalMoney" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="receive_money" jdbcType="VARCHAR" property="receiveMoney" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, family_id, household_id, sub_family_name, sub_family_code, family_member_id, 
+    family_member_name, family_member_gm, family_name, totem_address, proposer, phone, 
+    pay_flag, audit_flag, conform_flag, fail_reason, total_money, create_time, update_time, 
+    receive_money
+  </sql>
+  <select id="selectByExample" parameterType="com.dlm.fmp.pojo.HouseholdInAuditionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from household_in_audition
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from household_in_audition
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from household_in_audition
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dlm.fmp.pojo.HouseholdInAuditionExample">
+    delete from household_in_audition
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dlm.fmp.pojo.HouseholdInAudition">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into household_in_audition (family_id, household_id, sub_family_name, 
+      sub_family_code, family_member_id, family_member_name, 
+      family_member_gm, family_name, totem_address, 
+      proposer, phone, pay_flag, 
+      audit_flag, conform_flag, fail_reason, 
+      total_money, create_time, update_time, 
+      receive_money)
+    values (#{familyId,jdbcType=INTEGER}, #{householdId,jdbcType=INTEGER}, #{subFamilyName,jdbcType=VARCHAR}, 
+      #{subFamilyCode,jdbcType=VARCHAR}, #{familyMemberId,jdbcType=INTEGER}, #{familyMemberName,jdbcType=VARCHAR}, 
+      #{familyMemberGm,jdbcType=INTEGER}, #{familyName,jdbcType=VARCHAR}, #{totemAddress,jdbcType=VARCHAR}, 
+      #{proposer,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{payFlag,jdbcType=INTEGER}, 
+      #{auditFlag,jdbcType=INTEGER}, #{conformFlag,jdbcType=INTEGER}, #{failReason,jdbcType=VARCHAR}, 
+      #{totalMoney,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{receiveMoney,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlm.fmp.pojo.HouseholdInAudition">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into household_in_audition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="familyId != null">
+        family_id,
+      </if>
+      <if test="householdId != null">
+        household_id,
+      </if>
+      <if test="subFamilyName != null">
+        sub_family_name,
+      </if>
+      <if test="subFamilyCode != null">
+        sub_family_code,
+      </if>
+      <if test="familyMemberId != null">
+        family_member_id,
+      </if>
+      <if test="familyMemberName != null">
+        family_member_name,
+      </if>
+      <if test="familyMemberGm != null">
+        family_member_gm,
+      </if>
+      <if test="familyName != null">
+        family_name,
+      </if>
+      <if test="totemAddress != null">
+        totem_address,
+      </if>
+      <if test="proposer != null">
+        proposer,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="payFlag != null">
+        pay_flag,
+      </if>
+      <if test="auditFlag != null">
+        audit_flag,
+      </if>
+      <if test="conformFlag != null">
+        conform_flag,
+      </if>
+      <if test="failReason != null">
+        fail_reason,
+      </if>
+      <if test="totalMoney != null">
+        total_money,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="receiveMoney != null">
+        receive_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="familyId != null">
+        #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="householdId != null">
+        #{householdId,jdbcType=INTEGER},
+      </if>
+      <if test="subFamilyName != null">
+        #{subFamilyName,jdbcType=VARCHAR},
+      </if>
+      <if test="subFamilyCode != null">
+        #{subFamilyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="familyMemberId != null">
+        #{familyMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="familyMemberName != null">
+        #{familyMemberName,jdbcType=VARCHAR},
+      </if>
+      <if test="familyMemberGm != null">
+        #{familyMemberGm,jdbcType=INTEGER},
+      </if>
+      <if test="familyName != null">
+        #{familyName,jdbcType=VARCHAR},
+      </if>
+      <if test="totemAddress != null">
+        #{totemAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="proposer != null">
+        #{proposer,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="payFlag != null">
+        #{payFlag,jdbcType=INTEGER},
+      </if>
+      <if test="auditFlag != null">
+        #{auditFlag,jdbcType=INTEGER},
+      </if>
+      <if test="conformFlag != null">
+        #{conformFlag,jdbcType=INTEGER},
+      </if>
+      <if test="failReason != null">
+        #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null">
+        #{totalMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveMoney != null">
+        #{receiveMoney,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dlm.fmp.pojo.HouseholdInAuditionExample" resultType="java.lang.Long">
+    select count(*) from household_in_audition
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update household_in_audition
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyId != null">
+        family_id = #{record.familyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.householdId != null">
+        household_id = #{record.householdId,jdbcType=INTEGER},
+      </if>
+      <if test="record.subFamilyName != null">
+        sub_family_name = #{record.subFamilyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subFamilyCode != null">
+        sub_family_code = #{record.subFamilyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyMemberId != null">
+        family_member_id = #{record.familyMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyMemberName != null">
+        family_member_name = #{record.familyMemberName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyMemberGm != null">
+        family_member_gm = #{record.familyMemberGm,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyName != null">
+        family_name = #{record.familyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totemAddress != null">
+        totem_address = #{record.totemAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proposer != null">
+        proposer = #{record.proposer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payFlag != null">
+        pay_flag = #{record.payFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditFlag != null">
+        audit_flag = #{record.auditFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.conformFlag != null">
+        conform_flag = #{record.conformFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.failReason != null">
+        fail_reason = #{record.failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalMoney != null">
+        total_money = #{record.totalMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.receiveMoney != null">
+        receive_money = #{record.receiveMoney,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update household_in_audition
+    set id = #{record.id,jdbcType=INTEGER},
+      family_id = #{record.familyId,jdbcType=INTEGER},
+      household_id = #{record.householdId,jdbcType=INTEGER},
+      sub_family_name = #{record.subFamilyName,jdbcType=VARCHAR},
+      sub_family_code = #{record.subFamilyCode,jdbcType=VARCHAR},
+      family_member_id = #{record.familyMemberId,jdbcType=INTEGER},
+      family_member_name = #{record.familyMemberName,jdbcType=VARCHAR},
+      family_member_gm = #{record.familyMemberGm,jdbcType=INTEGER},
+      family_name = #{record.familyName,jdbcType=VARCHAR},
+      totem_address = #{record.totemAddress,jdbcType=VARCHAR},
+      proposer = #{record.proposer,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      pay_flag = #{record.payFlag,jdbcType=INTEGER},
+      audit_flag = #{record.auditFlag,jdbcType=INTEGER},
+      conform_flag = #{record.conformFlag,jdbcType=INTEGER},
+      fail_reason = #{record.failReason,jdbcType=VARCHAR},
+      total_money = #{record.totalMoney,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      receive_money = #{record.receiveMoney,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlm.fmp.pojo.HouseholdInAudition">
+    update household_in_audition
+    <set>
+      <if test="familyId != null">
+        family_id = #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="householdId != null">
+        household_id = #{householdId,jdbcType=INTEGER},
+      </if>
+      <if test="subFamilyName != null">
+        sub_family_name = #{subFamilyName,jdbcType=VARCHAR},
+      </if>
+      <if test="subFamilyCode != null">
+        sub_family_code = #{subFamilyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="familyMemberId != null">
+        family_member_id = #{familyMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="familyMemberName != null">
+        family_member_name = #{familyMemberName,jdbcType=VARCHAR},
+      </if>
+      <if test="familyMemberGm != null">
+        family_member_gm = #{familyMemberGm,jdbcType=INTEGER},
+      </if>
+      <if test="familyName != null">
+        family_name = #{familyName,jdbcType=VARCHAR},
+      </if>
+      <if test="totemAddress != null">
+        totem_address = #{totemAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="proposer != null">
+        proposer = #{proposer,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="payFlag != null">
+        pay_flag = #{payFlag,jdbcType=INTEGER},
+      </if>
+      <if test="auditFlag != null">
+        audit_flag = #{auditFlag,jdbcType=INTEGER},
+      </if>
+      <if test="conformFlag != null">
+        conform_flag = #{conformFlag,jdbcType=INTEGER},
+      </if>
+      <if test="failReason != null">
+        fail_reason = #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null">
+        total_money = #{totalMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveMoney != null">
+        receive_money = #{receiveMoney,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlm.fmp.pojo.HouseholdInAudition">
+    update household_in_audition
+    set family_id = #{familyId,jdbcType=INTEGER},
+      household_id = #{householdId,jdbcType=INTEGER},
+      sub_family_name = #{subFamilyName,jdbcType=VARCHAR},
+      sub_family_code = #{subFamilyCode,jdbcType=VARCHAR},
+      family_member_id = #{familyMemberId,jdbcType=INTEGER},
+      family_member_name = #{familyMemberName,jdbcType=VARCHAR},
+      family_member_gm = #{familyMemberGm,jdbcType=INTEGER},
+      family_name = #{familyName,jdbcType=VARCHAR},
+      totem_address = #{totemAddress,jdbcType=VARCHAR},
+      proposer = #{proposer,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      pay_flag = #{payFlag,jdbcType=INTEGER},
+      audit_flag = #{auditFlag,jdbcType=INTEGER},
+      conform_flag = #{conformFlag,jdbcType=INTEGER},
+      fail_reason = #{failReason,jdbcType=VARCHAR},
+      total_money = #{totalMoney,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      receive_money = #{receiveMoney,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

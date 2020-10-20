@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlm.fmp.mapper.ServiceCenterMapper">
+  <resultMap id="BaseResultMap" type="com.dlm.fmp.pojo.ServiceCenter">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="icon_address" jdbcType="VARCHAR" property="iconAddress" />
+    <result column="service_no" jdbcType="VARCHAR" property="serviceNo" />
+    <result column="service_code" jdbcType="VARCHAR" property="serviceCode" />
+    <result column="service_name" jdbcType="VARCHAR" property="serviceName" />
+    <result column="service_pay_type" jdbcType="INTEGER" property="servicePayType" />
+    <result column="service_intro" jdbcType="VARCHAR" property="serviceIntro" />
+    <result column="price_unit" jdbcType="VARCHAR" property="priceUnit" />
+    <result column="time_unit" jdbcType="VARCHAR" property="timeUnit" />
+    <result column="measure_unit" jdbcType="VARCHAR" property="measureUnit" />
+    <result column="discount" jdbcType="VARCHAR" property="discount" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="conf_type" jdbcType="VARCHAR" property="confType" />
+    <result column="conf_framework" jdbcType="VARCHAR" property="confFramework" />
+    <result column="internal_flag" jdbcType="INTEGER" property="internalFlag" />
+    <result column="use_flag" jdbcType="INTEGER" property="useFlag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, icon_address, service_no, service_code, service_name, service_pay_type, service_intro, 
+    price_unit, time_unit, measure_unit, discount, price, conf_type, conf_framework, 
+    internal_flag, use_flag, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.dlm.fmp.pojo.ServiceCenterExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from service_center
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from service_center
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from service_center
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlm.fmp.pojo.ServiceCenter">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into service_center (icon_address, service_no, service_code, 
+      service_name, service_pay_type, service_intro, 
+      price_unit, time_unit, measure_unit, 
+      discount, price, conf_type, 
+      conf_framework, internal_flag, use_flag, 
+      create_time, update_time)
+    values (#{iconAddress,jdbcType=VARCHAR}, #{serviceNo,jdbcType=VARCHAR}, #{serviceCode,jdbcType=VARCHAR}, 
+      #{serviceName,jdbcType=VARCHAR}, #{servicePayType,jdbcType=INTEGER}, #{serviceIntro,jdbcType=VARCHAR}, 
+      #{priceUnit,jdbcType=VARCHAR}, #{timeUnit,jdbcType=VARCHAR}, #{measureUnit,jdbcType=VARCHAR}, 
+      #{discount,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{confType,jdbcType=VARCHAR}, 
+      #{confFramework,jdbcType=VARCHAR}, #{internalFlag,jdbcType=INTEGER}, #{useFlag,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlm.fmp.pojo.ServiceCenter">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into service_center
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="iconAddress != null">
+        icon_address,
+      </if>
+      <if test="serviceNo != null">
+        service_no,
+      </if>
+      <if test="serviceCode != null">
+        service_code,
+      </if>
+      <if test="serviceName != null">
+        service_name,
+      </if>
+      <if test="servicePayType != null">
+        service_pay_type,
+      </if>
+      <if test="serviceIntro != null">
+        service_intro,
+      </if>
+      <if test="priceUnit != null">
+        price_unit,
+      </if>
+      <if test="timeUnit != null">
+        time_unit,
+      </if>
+      <if test="measureUnit != null">
+        measure_unit,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="confType != null">
+        conf_type,
+      </if>
+      <if test="confFramework != null">
+        conf_framework,
+      </if>
+      <if test="internalFlag != null">
+        internal_flag,
+      </if>
+      <if test="useFlag != null">
+        use_flag,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="iconAddress != null">
+        #{iconAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceNo != null">
+        #{serviceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceCode != null">
+        #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePayType != null">
+        #{servicePayType,jdbcType=INTEGER},
+      </if>
+      <if test="serviceIntro != null">
+        #{serviceIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="priceUnit != null">
+        #{priceUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="timeUnit != null">
+        #{timeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="measureUnit != null">
+        #{measureUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="confType != null">
+        #{confType,jdbcType=VARCHAR},
+      </if>
+      <if test="confFramework != null">
+        #{confFramework,jdbcType=VARCHAR},
+      </if>
+      <if test="internalFlag != null">
+        #{internalFlag,jdbcType=INTEGER},
+      </if>
+      <if test="useFlag != null">
+        #{useFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dlm.fmp.pojo.ServiceCenterExample" resultType="java.lang.Long">
+    select count(*) from service_center
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update service_center
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.iconAddress != null">
+        icon_address = #{record.iconAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceNo != null">
+        service_no = #{record.serviceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceCode != null">
+        service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceName != null">
+        service_name = #{record.serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servicePayType != null">
+        service_pay_type = #{record.servicePayType,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceIntro != null">
+        service_intro = #{record.serviceIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priceUnit != null">
+        price_unit = #{record.priceUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timeUnit != null">
+        time_unit = #{record.timeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.measureUnit != null">
+        measure_unit = #{record.measureUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discount != null">
+        discount = #{record.discount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confType != null">
+        conf_type = #{record.confType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confFramework != null">
+        conf_framework = #{record.confFramework,jdbcType=VARCHAR},
+      </if>
+      <if test="record.internalFlag != null">
+        internal_flag = #{record.internalFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.useFlag != null">
+        use_flag = #{record.useFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update service_center
+    set id = #{record.id,jdbcType=INTEGER},
+      icon_address = #{record.iconAddress,jdbcType=VARCHAR},
+      service_no = #{record.serviceNo,jdbcType=VARCHAR},
+      service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      service_name = #{record.serviceName,jdbcType=VARCHAR},
+      service_pay_type = #{record.servicePayType,jdbcType=INTEGER},
+      service_intro = #{record.serviceIntro,jdbcType=VARCHAR},
+      price_unit = #{record.priceUnit,jdbcType=VARCHAR},
+      time_unit = #{record.timeUnit,jdbcType=VARCHAR},
+      measure_unit = #{record.measureUnit,jdbcType=VARCHAR},
+      discount = #{record.discount,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=VARCHAR},
+      conf_type = #{record.confType,jdbcType=VARCHAR},
+      conf_framework = #{record.confFramework,jdbcType=VARCHAR},
+      internal_flag = #{record.internalFlag,jdbcType=INTEGER},
+      use_flag = #{record.useFlag,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlm.fmp.pojo.ServiceCenter">
+    update service_center
+    <set>
+      <if test="iconAddress != null">
+        icon_address = #{iconAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceNo != null">
+        service_no = #{serviceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceCode != null">
+        service_code = #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePayType != null">
+        service_pay_type = #{servicePayType,jdbcType=INTEGER},
+      </if>
+      <if test="serviceIntro != null">
+        service_intro = #{serviceIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="priceUnit != null">
+        price_unit = #{priceUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="timeUnit != null">
+        time_unit = #{timeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="measureUnit != null">
+        measure_unit = #{measureUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="confType != null">
+        conf_type = #{confType,jdbcType=VARCHAR},
+      </if>
+      <if test="confFramework != null">
+        conf_framework = #{confFramework,jdbcType=VARCHAR},
+      </if>
+      <if test="internalFlag != null">
+        internal_flag = #{internalFlag,jdbcType=INTEGER},
+      </if>
+      <if test="useFlag != null">
+        use_flag = #{useFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlm.fmp.pojo.ServiceCenter">
+    update service_center
+    set icon_address = #{iconAddress,jdbcType=VARCHAR},
+      service_no = #{serviceNo,jdbcType=VARCHAR},
+      service_code = #{serviceCode,jdbcType=VARCHAR},
+      service_name = #{serviceName,jdbcType=VARCHAR},
+      service_pay_type = #{servicePayType,jdbcType=INTEGER},
+      service_intro = #{serviceIntro,jdbcType=VARCHAR},
+      price_unit = #{priceUnit,jdbcType=VARCHAR},
+      time_unit = #{timeUnit,jdbcType=VARCHAR},
+      measure_unit = #{measureUnit,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      conf_type = #{confType,jdbcType=VARCHAR},
+      conf_framework = #{confFramework,jdbcType=VARCHAR},
+      internal_flag = #{internalFlag,jdbcType=INTEGER},
+      use_flag = #{useFlag,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

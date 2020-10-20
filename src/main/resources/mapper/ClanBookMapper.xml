@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlm.fmp.mapper.ClanBookMapper">
+  <resultMap id="BaseResultMap" type="com.dlm.fmp.pojo.ClanBook">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="family_id" jdbcType="INTEGER" property="familyId" />
+    <result column="surname" jdbcType="VARCHAR" property="surname" />
+    <result column="book_name" jdbcType="VARCHAR" property="bookName" />
+    <result column="volume_num" jdbcType="INTEGER" property="volumeNum" />
+    <result column="cover_image" jdbcType="VARCHAR" property="coverImage" />
+    <result column="deal_flag" jdbcType="INTEGER" property="dealFlag" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="relation_modify_flag" jdbcType="INTEGER" property="relationModifyFlag" />
+    <result column="content_modify_flag" jdbcType="INTEGER" property="contentModifyFlag" />
+    <result column="ancestor_id" jdbcType="INTEGER" property="ancestorId" />
+    <result column="ancestor_name" jdbcType="VARCHAR" property="ancestorName" />
+    <result column="book_ancestor_id" jdbcType="INTEGER" property="bookAncestorId" />
+    <result column="book_ancestor_name" jdbcType="VARCHAR" property="bookAncestorName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="sub_clan_setting" jdbcType="VARCHAR" property="subClanSetting" />
+    <result column="open_flag" jdbcType="INTEGER" property="openFlag" />
+    <result column="publish_flag" jdbcType="INTEGER" property="publishFlag" />
+    <result column="generation_word" jdbcType="VARCHAR" property="generationWord" />
+    <result column="watermark_flag" jdbcType="INTEGER" property="watermarkFlag" />
+    <result column="branch_type" jdbcType="INTEGER" property="branchType" />
+    <result column="generation_poem" jdbcType="VARCHAR" property="generationPoem" />
+    <result column="book_ancestor_word" jdbcType="VARCHAR" property="bookAncestorWord" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, family_id, surname, book_name, volume_num, cover_image, deal_flag, status, relation_modify_flag, 
+    content_modify_flag, ancestor_id, ancestor_name, book_ancestor_id, book_ancestor_name, 
+    create_time, update_time, sub_clan_setting, open_flag, publish_flag, generation_word, 
+    watermark_flag, branch_type, generation_poem, book_ancestor_word
+  </sql>
+  <select id="selectByExample" parameterType="com.dlm.fmp.pojo.ClanBookExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from clan_book
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from clan_book
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from clan_book
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dlm.fmp.pojo.ClanBookExample">
+    delete from clan_book
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dlm.fmp.pojo.ClanBook">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into clan_book (family_id, surname, book_name, 
+      volume_num, cover_image, deal_flag, 
+      status, relation_modify_flag, content_modify_flag, 
+      ancestor_id, ancestor_name, book_ancestor_id, 
+      book_ancestor_name, create_time, update_time, 
+      sub_clan_setting, open_flag, publish_flag, 
+      generation_word, watermark_flag, branch_type, 
+      generation_poem, book_ancestor_word)
+    values (#{familyId,jdbcType=INTEGER}, #{surname,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR}, 
+      #{volumeNum,jdbcType=INTEGER}, #{coverImage,jdbcType=VARCHAR}, #{dealFlag,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{relationModifyFlag,jdbcType=INTEGER}, #{contentModifyFlag,jdbcType=INTEGER}, 
+      #{ancestorId,jdbcType=INTEGER}, #{ancestorName,jdbcType=VARCHAR}, #{bookAncestorId,jdbcType=INTEGER}, 
+      #{bookAncestorName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{subClanSetting,jdbcType=VARCHAR}, #{openFlag,jdbcType=INTEGER}, #{publishFlag,jdbcType=INTEGER}, 
+      #{generationWord,jdbcType=VARCHAR}, #{watermarkFlag,jdbcType=INTEGER}, #{branchType,jdbcType=INTEGER}, 
+      #{generationPoem,jdbcType=VARCHAR}, #{bookAncestorWord,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlm.fmp.pojo.ClanBook">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into clan_book
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="familyId != null">
+        family_id,
+      </if>
+      <if test="surname != null">
+        surname,
+      </if>
+      <if test="bookName != null">
+        book_name,
+      </if>
+      <if test="volumeNum != null">
+        volume_num,
+      </if>
+      <if test="coverImage != null">
+        cover_image,
+      </if>
+      <if test="dealFlag != null">
+        deal_flag,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="relationModifyFlag != null">
+        relation_modify_flag,
+      </if>
+      <if test="contentModifyFlag != null">
+        content_modify_flag,
+      </if>
+      <if test="ancestorId != null">
+        ancestor_id,
+      </if>
+      <if test="ancestorName != null">
+        ancestor_name,
+      </if>
+      <if test="bookAncestorId != null">
+        book_ancestor_id,
+      </if>
+      <if test="bookAncestorName != null">
+        book_ancestor_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="subClanSetting != null">
+        sub_clan_setting,
+      </if>
+      <if test="openFlag != null">
+        open_flag,
+      </if>
+      <if test="publishFlag != null">
+        publish_flag,
+      </if>
+      <if test="generationWord != null">
+        generation_word,
+      </if>
+      <if test="watermarkFlag != null">
+        watermark_flag,
+      </if>
+      <if test="branchType != null">
+        branch_type,
+      </if>
+      <if test="generationPoem != null">
+        generation_poem,
+      </if>
+      <if test="bookAncestorWord != null">
+        book_ancestor_word,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="familyId != null">
+        #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="surname != null">
+        #{surname,jdbcType=VARCHAR},
+      </if>
+      <if test="bookName != null">
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="volumeNum != null">
+        #{volumeNum,jdbcType=INTEGER},
+      </if>
+      <if test="coverImage != null">
+        #{coverImage,jdbcType=VARCHAR},
+      </if>
+      <if test="dealFlag != null">
+        #{dealFlag,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="relationModifyFlag != null">
+        #{relationModifyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="contentModifyFlag != null">
+        #{contentModifyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="ancestorId != null">
+        #{ancestorId,jdbcType=INTEGER},
+      </if>
+      <if test="ancestorName != null">
+        #{ancestorName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAncestorId != null">
+        #{bookAncestorId,jdbcType=INTEGER},
+      </if>
+      <if test="bookAncestorName != null">
+        #{bookAncestorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subClanSetting != null">
+        #{subClanSetting,jdbcType=VARCHAR},
+      </if>
+      <if test="openFlag != null">
+        #{openFlag,jdbcType=INTEGER},
+      </if>
+      <if test="publishFlag != null">
+        #{publishFlag,jdbcType=INTEGER},
+      </if>
+      <if test="generationWord != null">
+        #{generationWord,jdbcType=VARCHAR},
+      </if>
+      <if test="watermarkFlag != null">
+        #{watermarkFlag,jdbcType=INTEGER},
+      </if>
+      <if test="branchType != null">
+        #{branchType,jdbcType=INTEGER},
+      </if>
+      <if test="generationPoem != null">
+        #{generationPoem,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAncestorWord != null">
+        #{bookAncestorWord,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dlm.fmp.pojo.ClanBookExample" resultType="java.lang.Long">
+    select count(*) from clan_book
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update clan_book
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyId != null">
+        family_id = #{record.familyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.surname != null">
+        surname = #{record.surname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookName != null">
+        book_name = #{record.bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.volumeNum != null">
+        volume_num = #{record.volumeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.coverImage != null">
+        cover_image = #{record.coverImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealFlag != null">
+        deal_flag = #{record.dealFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.relationModifyFlag != null">
+        relation_modify_flag = #{record.relationModifyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.contentModifyFlag != null">
+        content_modify_flag = #{record.contentModifyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.ancestorId != null">
+        ancestor_id = #{record.ancestorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ancestorName != null">
+        ancestor_name = #{record.ancestorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookAncestorId != null">
+        book_ancestor_id = #{record.bookAncestorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bookAncestorName != null">
+        book_ancestor_name = #{record.bookAncestorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.subClanSetting != null">
+        sub_clan_setting = #{record.subClanSetting,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openFlag != null">
+        open_flag = #{record.openFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishFlag != null">
+        publish_flag = #{record.publishFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.generationWord != null">
+        generation_word = #{record.generationWord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.watermarkFlag != null">
+        watermark_flag = #{record.watermarkFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.branchType != null">
+        branch_type = #{record.branchType,jdbcType=INTEGER},
+      </if>
+      <if test="record.generationPoem != null">
+        generation_poem = #{record.generationPoem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookAncestorWord != null">
+        book_ancestor_word = #{record.bookAncestorWord,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update clan_book
+    set id = #{record.id,jdbcType=INTEGER},
+      family_id = #{record.familyId,jdbcType=INTEGER},
+      surname = #{record.surname,jdbcType=VARCHAR},
+      book_name = #{record.bookName,jdbcType=VARCHAR},
+      volume_num = #{record.volumeNum,jdbcType=INTEGER},
+      cover_image = #{record.coverImage,jdbcType=VARCHAR},
+      deal_flag = #{record.dealFlag,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      relation_modify_flag = #{record.relationModifyFlag,jdbcType=INTEGER},
+      content_modify_flag = #{record.contentModifyFlag,jdbcType=INTEGER},
+      ancestor_id = #{record.ancestorId,jdbcType=INTEGER},
+      ancestor_name = #{record.ancestorName,jdbcType=VARCHAR},
+      book_ancestor_id = #{record.bookAncestorId,jdbcType=INTEGER},
+      book_ancestor_name = #{record.bookAncestorName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      sub_clan_setting = #{record.subClanSetting,jdbcType=VARCHAR},
+      open_flag = #{record.openFlag,jdbcType=INTEGER},
+      publish_flag = #{record.publishFlag,jdbcType=INTEGER},
+      generation_word = #{record.generationWord,jdbcType=VARCHAR},
+      watermark_flag = #{record.watermarkFlag,jdbcType=INTEGER},
+      branch_type = #{record.branchType,jdbcType=INTEGER},
+      generation_poem = #{record.generationPoem,jdbcType=VARCHAR},
+      book_ancestor_word = #{record.bookAncestorWord,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlm.fmp.pojo.ClanBook">
+    update clan_book
+    <set>
+      <if test="familyId != null">
+        family_id = #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="surname != null">
+        surname = #{surname,jdbcType=VARCHAR},
+      </if>
+      <if test="bookName != null">
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="volumeNum != null">
+        volume_num = #{volumeNum,jdbcType=INTEGER},
+      </if>
+      <if test="coverImage != null">
+        cover_image = #{coverImage,jdbcType=VARCHAR},
+      </if>
+      <if test="dealFlag != null">
+        deal_flag = #{dealFlag,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="relationModifyFlag != null">
+        relation_modify_flag = #{relationModifyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="contentModifyFlag != null">
+        content_modify_flag = #{contentModifyFlag,jdbcType=INTEGER},
+      </if>
+      <if test="ancestorId != null">
+        ancestor_id = #{ancestorId,jdbcType=INTEGER},
+      </if>
+      <if test="ancestorName != null">
+        ancestor_name = #{ancestorName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAncestorId != null">
+        book_ancestor_id = #{bookAncestorId,jdbcType=INTEGER},
+      </if>
+      <if test="bookAncestorName != null">
+        book_ancestor_name = #{bookAncestorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subClanSetting != null">
+        sub_clan_setting = #{subClanSetting,jdbcType=VARCHAR},
+      </if>
+      <if test="openFlag != null">
+        open_flag = #{openFlag,jdbcType=INTEGER},
+      </if>
+      <if test="publishFlag != null">
+        publish_flag = #{publishFlag,jdbcType=INTEGER},
+      </if>
+      <if test="generationWord != null">
+        generation_word = #{generationWord,jdbcType=VARCHAR},
+      </if>
+      <if test="watermarkFlag != null">
+        watermark_flag = #{watermarkFlag,jdbcType=INTEGER},
+      </if>
+      <if test="branchType != null">
+        branch_type = #{branchType,jdbcType=INTEGER},
+      </if>
+      <if test="generationPoem != null">
+        generation_poem = #{generationPoem,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAncestorWord != null">
+        book_ancestor_word = #{bookAncestorWord,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlm.fmp.pojo.ClanBook">
+    update clan_book
+    set family_id = #{familyId,jdbcType=INTEGER},
+      surname = #{surname,jdbcType=VARCHAR},
+      book_name = #{bookName,jdbcType=VARCHAR},
+      volume_num = #{volumeNum,jdbcType=INTEGER},
+      cover_image = #{coverImage,jdbcType=VARCHAR},
+      deal_flag = #{dealFlag,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      relation_modify_flag = #{relationModifyFlag,jdbcType=INTEGER},
+      content_modify_flag = #{contentModifyFlag,jdbcType=INTEGER},
+      ancestor_id = #{ancestorId,jdbcType=INTEGER},
+      ancestor_name = #{ancestorName,jdbcType=VARCHAR},
+      book_ancestor_id = #{bookAncestorId,jdbcType=INTEGER},
+      book_ancestor_name = #{bookAncestorName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      sub_clan_setting = #{subClanSetting,jdbcType=VARCHAR},
+      open_flag = #{openFlag,jdbcType=INTEGER},
+      publish_flag = #{publishFlag,jdbcType=INTEGER},
+      generation_word = #{generationWord,jdbcType=VARCHAR},
+      watermark_flag = #{watermarkFlag,jdbcType=INTEGER},
+      branch_type = #{branchType,jdbcType=INTEGER},
+      generation_poem = #{generationPoem,jdbcType=VARCHAR},
+      book_ancestor_word = #{bookAncestorWord,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

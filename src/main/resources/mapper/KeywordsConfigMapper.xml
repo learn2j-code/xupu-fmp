@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlm.fmp.mapper.KeywordsConfigMapper">
+  <resultMap id="BaseResultMap" type="com.dlm.fmp.pojo.KeywordsConfig">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="keywords_name" jdbcType="VARCHAR" property="keywordsName" />
+    <result column="keywords_code" jdbcType="VARCHAR" property="keywordsCode" />
+    <result column="keywords_value" jdbcType="VARCHAR" property="keywordsValue" />
+    <result column="book_id" jdbcType="INTEGER" property="bookId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, keywords_name, keywords_code, keywords_value, book_id, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.dlm.fmp.pojo.KeywordsConfigExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from keywords_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from keywords_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from keywords_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dlm.fmp.pojo.KeywordsConfigExample">
+    delete from keywords_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dlm.fmp.pojo.KeywordsConfig">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into keywords_config (keywords_name, keywords_code, keywords_value, 
+      book_id, create_time, update_time
+      )
+    values (#{keywordsName,jdbcType=VARCHAR}, #{keywordsCode,jdbcType=VARCHAR}, #{keywordsValue,jdbcType=VARCHAR}, 
+      #{bookId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlm.fmp.pojo.KeywordsConfig">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into keywords_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="keywordsName != null">
+        keywords_name,
+      </if>
+      <if test="keywordsCode != null">
+        keywords_code,
+      </if>
+      <if test="keywordsValue != null">
+        keywords_value,
+      </if>
+      <if test="bookId != null">
+        book_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="keywordsName != null">
+        #{keywordsName,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordsCode != null">
+        #{keywordsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordsValue != null">
+        #{keywordsValue,jdbcType=VARCHAR},
+      </if>
+      <if test="bookId != null">
+        #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dlm.fmp.pojo.KeywordsConfigExample" resultType="java.lang.Long">
+    select count(*) from keywords_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update keywords_config
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.keywordsName != null">
+        keywords_name = #{record.keywordsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keywordsCode != null">
+        keywords_code = #{record.keywordsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keywordsValue != null">
+        keywords_value = #{record.keywordsValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookId != null">
+        book_id = #{record.bookId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update keywords_config
+    set id = #{record.id,jdbcType=INTEGER},
+      keywords_name = #{record.keywordsName,jdbcType=VARCHAR},
+      keywords_code = #{record.keywordsCode,jdbcType=VARCHAR},
+      keywords_value = #{record.keywordsValue,jdbcType=VARCHAR},
+      book_id = #{record.bookId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlm.fmp.pojo.KeywordsConfig">
+    update keywords_config
+    <set>
+      <if test="keywordsName != null">
+        keywords_name = #{keywordsName,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordsCode != null">
+        keywords_code = #{keywordsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordsValue != null">
+        keywords_value = #{keywordsValue,jdbcType=VARCHAR},
+      </if>
+      <if test="bookId != null">
+        book_id = #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlm.fmp.pojo.KeywordsConfig">
+    update keywords_config
+    set keywords_name = #{keywordsName,jdbcType=VARCHAR},
+      keywords_code = #{keywordsCode,jdbcType=VARCHAR},
+      keywords_value = #{keywordsValue,jdbcType=VARCHAR},
+      book_id = #{bookId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

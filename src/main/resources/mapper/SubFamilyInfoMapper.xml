@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlm.fmp.mapper.SubFamilyInfoMapper">
+  <resultMap id="BaseResultMap" type="com.dlm.fmp.pojo.SubFamilyInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sub_family_no" jdbcType="VARCHAR" property="subFamilyNo" />
+    <result column="sub_family_code" jdbcType="VARCHAR" property="subFamilyCode" />
+    <result column="sub_ancestor_name" jdbcType="VARCHAR" property="subAncestorName" />
+    <result column="immigrate_address" jdbcType="VARCHAR" property="immigrateAddress" />
+    <result column="immigrate_time" jdbcType="VARCHAR" property="immigrateTime" />
+    <result column="sub_manager" jdbcType="VARCHAR" property="subManager" />
+    <result column="sub_manager_id" jdbcType="INTEGER" property="subManagerId" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="migrate_flag" jdbcType="INTEGER" property="migrateFlag" />
+    <result column="family_id" jdbcType="INTEGER" property="familyId" />
+    <result column="family_memeber_id" jdbcType="INTEGER" property="familyMemeberId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sub_family_no, sub_family_code, sub_ancestor_name, immigrate_address, immigrate_time, 
+    sub_manager, sub_manager_id, phone, migrate_flag, family_id, family_memeber_id, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.dlm.fmp.pojo.SubFamilyInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sub_family_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sub_family_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sub_family_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dlm.fmp.pojo.SubFamilyInfoExample">
+    delete from sub_family_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dlm.fmp.pojo.SubFamilyInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sub_family_info (sub_family_no, sub_family_code, sub_ancestor_name, 
+      immigrate_address, immigrate_time, sub_manager, 
+      sub_manager_id, phone, migrate_flag, 
+      family_id, family_memeber_id, create_time, 
+      update_time)
+    values (#{subFamilyNo,jdbcType=VARCHAR}, #{subFamilyCode,jdbcType=VARCHAR}, #{subAncestorName,jdbcType=VARCHAR}, 
+      #{immigrateAddress,jdbcType=VARCHAR}, #{immigrateTime,jdbcType=VARCHAR}, #{subManager,jdbcType=VARCHAR}, 
+      #{subManagerId,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{migrateFlag,jdbcType=INTEGER}, 
+      #{familyId,jdbcType=INTEGER}, #{familyMemeberId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlm.fmp.pojo.SubFamilyInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sub_family_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subFamilyNo != null">
+        sub_family_no,
+      </if>
+      <if test="subFamilyCode != null">
+        sub_family_code,
+      </if>
+      <if test="subAncestorName != null">
+        sub_ancestor_name,
+      </if>
+      <if test="immigrateAddress != null">
+        immigrate_address,
+      </if>
+      <if test="immigrateTime != null">
+        immigrate_time,
+      </if>
+      <if test="subManager != null">
+        sub_manager,
+      </if>
+      <if test="subManagerId != null">
+        sub_manager_id,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="migrateFlag != null">
+        migrate_flag,
+      </if>
+      <if test="familyId != null">
+        family_id,
+      </if>
+      <if test="familyMemeberId != null">
+        family_memeber_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subFamilyNo != null">
+        #{subFamilyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subFamilyCode != null">
+        #{subFamilyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subAncestorName != null">
+        #{subAncestorName,jdbcType=VARCHAR},
+      </if>
+      <if test="immigrateAddress != null">
+        #{immigrateAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="immigrateTime != null">
+        #{immigrateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="subManager != null">
+        #{subManager,jdbcType=VARCHAR},
+      </if>
+      <if test="subManagerId != null">
+        #{subManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="migrateFlag != null">
+        #{migrateFlag,jdbcType=INTEGER},
+      </if>
+      <if test="familyId != null">
+        #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="familyMemeberId != null">
+        #{familyMemeberId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dlm.fmp.pojo.SubFamilyInfoExample" resultType="java.lang.Long">
+    select count(*) from sub_family_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sub_family_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.subFamilyNo != null">
+        sub_family_no = #{record.subFamilyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subFamilyCode != null">
+        sub_family_code = #{record.subFamilyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subAncestorName != null">
+        sub_ancestor_name = #{record.subAncestorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.immigrateAddress != null">
+        immigrate_address = #{record.immigrateAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.immigrateTime != null">
+        immigrate_time = #{record.immigrateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subManager != null">
+        sub_manager = #{record.subManager,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subManagerId != null">
+        sub_manager_id = #{record.subManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.migrateFlag != null">
+        migrate_flag = #{record.migrateFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyId != null">
+        family_id = #{record.familyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyMemeberId != null">
+        family_memeber_id = #{record.familyMemeberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sub_family_info
+    set id = #{record.id,jdbcType=INTEGER},
+      sub_family_no = #{record.subFamilyNo,jdbcType=VARCHAR},
+      sub_family_code = #{record.subFamilyCode,jdbcType=VARCHAR},
+      sub_ancestor_name = #{record.subAncestorName,jdbcType=VARCHAR},
+      immigrate_address = #{record.immigrateAddress,jdbcType=VARCHAR},
+      immigrate_time = #{record.immigrateTime,jdbcType=VARCHAR},
+      sub_manager = #{record.subManager,jdbcType=VARCHAR},
+      sub_manager_id = #{record.subManagerId,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      migrate_flag = #{record.migrateFlag,jdbcType=INTEGER},
+      family_id = #{record.familyId,jdbcType=INTEGER},
+      family_memeber_id = #{record.familyMemeberId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlm.fmp.pojo.SubFamilyInfo">
+    update sub_family_info
+    <set>
+      <if test="subFamilyNo != null">
+        sub_family_no = #{subFamilyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subFamilyCode != null">
+        sub_family_code = #{subFamilyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subAncestorName != null">
+        sub_ancestor_name = #{subAncestorName,jdbcType=VARCHAR},
+      </if>
+      <if test="immigrateAddress != null">
+        immigrate_address = #{immigrateAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="immigrateTime != null">
+        immigrate_time = #{immigrateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="subManager != null">
+        sub_manager = #{subManager,jdbcType=VARCHAR},
+      </if>
+      <if test="subManagerId != null">
+        sub_manager_id = #{subManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="migrateFlag != null">
+        migrate_flag = #{migrateFlag,jdbcType=INTEGER},
+      </if>
+      <if test="familyId != null">
+        family_id = #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="familyMemeberId != null">
+        family_memeber_id = #{familyMemeberId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlm.fmp.pojo.SubFamilyInfo">
+    update sub_family_info
+    set sub_family_no = #{subFamilyNo,jdbcType=VARCHAR},
+      sub_family_code = #{subFamilyCode,jdbcType=VARCHAR},
+      sub_ancestor_name = #{subAncestorName,jdbcType=VARCHAR},
+      immigrate_address = #{immigrateAddress,jdbcType=VARCHAR},
+      immigrate_time = #{immigrateTime,jdbcType=VARCHAR},
+      sub_manager = #{subManager,jdbcType=VARCHAR},
+      sub_manager_id = #{subManagerId,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      migrate_flag = #{migrateFlag,jdbcType=INTEGER},
+      family_id = #{familyId,jdbcType=INTEGER},
+      family_memeber_id = #{familyMemeberId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
